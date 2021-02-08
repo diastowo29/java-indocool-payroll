@@ -1,7 +1,5 @@
 package df.project.indocool.ICPayroll.model;
 
-import java.sql.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,7 +15,7 @@ public class Employee {
 	private String employeeStatus;
 	private String employeeName;
 	private String placeofBirth;
-	private Date dateofBirth;
+	private String dateofBirth;
 	private String employeeNik;
 	private String employeeKk;
 	private String employeeNpwp;
@@ -29,7 +27,7 @@ public class Employee {
 	private String employeeEmail;
 	private String employeePhone;
 	private String employeeDivision;
-	private Date employeeJoinDate;
+	private String employeeJoinDate;
 	private String employeeJobPosition;
 	private Double employeeBasicSalary;
 	private Double employeeMeal;
@@ -47,12 +45,12 @@ public class Employee {
 	}
 
 	public Employee(String workingSite, String employeeStatus, String employeeName, String placeofBirth,
-			Date dateofBirth, String employeeNik, String employeeKk, String employeeNpwp, String employeeMaritalStatus,
-			String motherName, String bpjsTk, String bpjsKs, String employeeAddress, String employeeEmail,
-			String employeePhone, String employeeDivision, Date employeeJoinDate, String employeeJobPosition,
-			Double employeeBasicSalary, Double employeeMeal, Double employeeTransport, Double employeeAttendance,
-			Double employeeOntime, Double employeeHse, Double employeeProductivity, Double employeeFix,
-			Double employeeOvertime, Double employeeAway) {
+			String dateofBirth, String employeeNik, String employeeKk, String employeeNpwp,
+			String employeeMaritalStatus, String motherName, String bpjsTk, String bpjsKs, String employeeAddress,
+			String employeeEmail, String employeePhone, String employeeDivision, String employeeJoinDate,
+			String employeeJobPosition, Double employeeBasicSalary, Double employeeMeal, Double employeeTransport,
+			Double employeeAttendance, Double employeeOntime, Double employeeHse, Double employeeProductivity,
+			Double employeeFix, Double employeeOvertime, Double employeeAway) {
 		this.workingSite = workingSite;
 		this.employeeStatus = employeeStatus;
 		this.employeeName = employeeName;
@@ -130,11 +128,11 @@ public class Employee {
 	}
 
 	@Column(name = "employee_dob", nullable = false)
-	public Date getDateofBirth() {
+	public String getDateofBirth() {
 		return dateofBirth;
 	}
 
-	public void setDateofBirth(Date dateofBirth) {
+	public void setDateofBirth(String dateofBirth) {
 		this.dateofBirth = dateofBirth;
 	}
 
@@ -238,11 +236,11 @@ public class Employee {
 	}
 
 	@Column(name = "employee_join_date", nullable = false)
-	public Date getEmployeeJoinDate() {
+	public String getEmployeeJoinDate() {
 		return employeeJoinDate;
 	}
 
-	public void setEmployeeJoinDate(Date employeeJoinDate) {
+	public void setEmployeeJoinDate(String employeeJoinDate) {
 		this.employeeJoinDate = employeeJoinDate;
 	}
 

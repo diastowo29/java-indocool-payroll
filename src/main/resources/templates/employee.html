@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Employee</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+
+    <link rel="stylesheet" href="assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" href="assets/vendors/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon">
+</head>
+
+<body>
+    <div id="app">
+        <div id="sidebar" class="active">
+            <div class="sidebar-wrapper active">
+                <div class="sidebar-header">
+                    <div class="d-flex justify-content-between">
+                        <div class="logo">
+                            <a href="index.html"><img src="assets/images/logo/logo.png" alt="Logo" srcset=""></a>
+                        </div>
+                        <div class="toggler">
+                            <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar-menu">
+                    <div th:insert="/sidebar::the_sidebar"></div>
+                </div>
+                <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+            </div>
+        </div>
+        <div id="main">
+            <header class="mb-3">
+                <a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </header>
+
+            <div class="page-heading">
+                <div class="page-title">
+                    <div class="row">
+                        <div class="col-12 col-md-6 order-md-1 order-last">
+                            <h3>Form Employee</h3>
+                            <p class="text-subtitle text-muted">Add New Employee</p>
+                        </div>
+                        <div class="col-12 col-md-6 order-md-2 order-first">
+                            <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="admin">Dashboard</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Form Employee</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Basic Horizontal form layout section start -->
+                <section id="basic-horizontal-layouts">
+                    <div class="row match-height">
+                    </div>
+                </section>
+                <!-- // Basic Horizontal form layout section end -->
+
+                <!-- Basic Vertical form layout section start -->
+                <section id="basic-vertical-layouts">
+                    <div class="row match-height">
+                        <div class="col-md-6 col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Personal Information</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-body">
+                                        <form class="form form-vertical">
+                                            <div class="form-body">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="fullname-input">Full Name</label>
+                                                            <div class="position-relative">
+                                                                <input type="text" class="form-control"
+                                                                    placeholder="John Conor"
+                                                                    id="fullname-input">
+                                                                <div class="form-control-icon">
+                                                                    <i class="bi bi-person"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-12">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="email-input">Email</label>
+                                                            <div class="position-relative">
+                                                                <input type="text" class="form-control"
+                                                                    placeholder="john@example.com" id="email-input">
+                                                                <div class="form-control-icon">
+                                                                    <i class="bi bi-envelope"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-12">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="phone-input">Phone Number</label>
+                                                            <div class="position-relative">
+                                                                <input type="text" class="form-control"
+                                                                    placeholder="081299998888" id="phone-input">
+                                                                <div class="form-control-icon">
+                                                                    <i class="bi bi-phone"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-12">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="nik-input">NIK</label>
+                                                            <div class="position-relative">
+                                                                <input type="text" class="form-control"
+                                                                    placeholder="3201301232120012" id="nik-input">
+                                                                <div class="form-control-icon">
+                                                                    <i class="bi bi-card-heading"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-12">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="kk-input">KK Number</label>
+                                                            <div class="position-relative">
+                                                                <input type="text" class="form-control"
+                                                                    placeholder="3201301232120012" id="kk-input">
+                                                                <div class="form-control-icon">
+                                                                    <i class="bi bi-card-heading"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-12">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="pob-input">Place of Birth</label>
+                                                            <div class="position-relative">
+                                                                <input type="text" class="form-control"
+                                                                    placeholder="Jakarta" id="pob-input">
+                                                                <div class="form-control-icon">
+                                                                    <i class="bi bi-house"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-12">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="dob-input">Date of Birth</label>
+                                                            <div class="position-relative">
+                                                                <input type="date" class="form-control"
+                                                                    placeholder="3201301232120012" id="dob-input">
+                                                                <div class="form-control-icon">
+                                                                    <i class="bi bi-calendar-date"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="mother-input">Mother Name</label>
+                                                            <div class="position-relative">
+                                                                <input type="text" class="form-control"
+                                                                    placeholder="Sarah Conor" id="mother-input">
+                                                                <div class="form-control-icon">
+                                                                    <i class="bi bi-person-circle"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-12">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="blood-input">Blood Type</label>
+                                                            <div class="position-relative">
+                                                                <fieldset class="form-group">
+				                                                    <select class="form-select" id="blood-input">
+				                                                        <option>A</option>
+				                                                        <option>B</option>
+				                                                        <option>AB</option>
+				                                                        <option>O</option>
+				                                                    </select>
+				                                                </fieldset>
+                                                                <!-- <div class="form-control-icon">
+                                                                    <i class="bi bi-droplet-fill"></i>
+                                                                </div> -->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-12">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="marital-input">Marital Status</label>
+                                                            <div class="position-relative">
+                                                                <fieldset class="form-group">
+				                                                    <select class="form-select" id="marital-input">
+				                                                        <option>Single</option>
+				                                                        <option>Married</option>
+				                                                    </select>
+				                                                </fieldset>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="address-input">Home Address</label>
+                                                            <div class="position-relative">
+                                                                <textarea class="form-control" id="address-input"
+                                            					rows="3" placeholder="Somewhere near Love Lake"></textarea>
+                                                                <div class="form-control-icon">
+                                                                    <i class="bi bi-house-door-fill"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Vertical Form with Icons</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-body">
+                                        <form class="form form-vertical">
+                                            <div class="form-body">
+                                                <div class="row">
+                                                    <div class="col-md-6 col-12">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="work-domicile-input">Working Domicile</label>
+                                                            <div class="position-relative">
+                                                                <fieldset class="form-group">
+				                                                    <select class="form-select" id="work-domicile-input">
+				                                                        <option>Bogor</option>
+				                                                        <option>Balikpapan</option>
+				                                                    </select>
+				                                                </fieldset>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-12">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="job-pos-input">Job Position</label>
+                                                            <div class="position-relative">
+                                                                <input type="text" class="form-control"
+                                                                    placeholder="Sales" id="job-pos-input">
+                                                                <div class="form-control-icon">
+                                                                    <i class="bi bi-cone-striped"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-12">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="division-input">Division</label>
+                                                            <div class="position-relative">
+                                                                <input type="text" class="form-control"
+                                                                    placeholder="Sales and Marketing" id="division-input">
+                                                                <div class="form-control-icon">
+                                                                    <i class="bi bi-journal-bookmark"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-12">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="emp-status-input">Employee Status</label>
+                                                            <div class="position-relative">
+                                                                <fieldset class="form-group">
+				                                                    <select class="form-select" id="emp-status-input">
+				                                                        <option>Full-Time</option>
+				                                                        <option>Contract</option>
+				                                                    </select>
+				                                                </fieldset>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-12">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="bpjs-ks-input">BPJS Kesehatan</label>
+                                                            <div class="position-relative">
+                                                                <input type="text" class="form-control"
+                                                                    placeholder="3201301232120012" id="bpjs-ks-input">
+                                                                <div class="form-control-icon">
+                                                                    <i class="bi bi-shield-plus"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-12">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="bpjs-tk-input">BPJS Ketenagakerjaan</label>
+                                                            <div class="position-relative">
+                                                                <input type="text" class="form-control"
+                                                                    placeholder="3201301232120012" id="bpjs-tk-input">
+                                                                <div class="form-control-icon">
+                                                                    <i class="bi bi-shield-plus"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-12">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="npwp-input">NPWP Number</label>
+                                                            <div class="position-relative">
+                                                                <input type="text" class="form-control"
+                                                                    placeholder="3201301232120012" id="npwp-input">
+                                                                <div class="form-control-icon">
+                                                                    <i class="bi bi-credit-card-2-front-fill"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-12">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="join-date-input">Join Date</label>
+                                                            <div class="position-relative">
+                                                                <input type="date" class="form-control"
+                                                                    placeholder="" id="join-date-input">
+                                                                <div class="form-control-icon">
+                                                                    <i class="bi bi-calendar-day"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Salary and Allowance</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-body">
+                                        <form class="form form-vertical">
+                                            <div class="form-body">
+                                                <div class="row">
+                                                    <div class="col-md-3 col-12">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="basic-salary-input">Basic Salary (Rp)</label>
+                                                            <div class="position-relative">
+                                                                <input type="number" class="form-control"
+                                                                    placeholder="5.000.000"
+                                                                    id="basic-salary-input">
+                                                                <div class="form-control-icon">
+                                                                    <i class="bi bi-cash-stack"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3 col-12">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="meal-input">Meal Allowance (Rp)</label>
+                                                            <div class="position-relative">
+                                                                <input type="number" class="form-control"
+                                                                    placeholder="5.000.000"
+                                                                    id="meal-input">
+                                                                <div class="form-control-icon">
+                                                                    <i class="bi bi-cash-stack"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3 col-12">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="transport-input">Transport Allowance (Rp)</label>
+                                                            <div class="position-relative">
+                                                                <input type="number" class="form-control"
+                                                                    placeholder="5.000.000"
+                                                                    id="transport-input">
+                                                                <div class="form-control-icon">
+                                                                    <i class="bi bi-cash-stack"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3 col-12">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="attendance-input">Attendance Allowance (Rp)</label>
+                                                            <div class="position-relative">
+                                                                <input type="number" class="form-control"
+                                                                    placeholder="5.000.000"
+                                                                    id="attendance-input">
+                                                                <div class="form-control-icon">
+                                                                    <i class="bi bi-cash-stack"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3 col-12">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="ontime-input">On Time Allowance (Rp)</label>
+                                                            <div class="position-relative">
+                                                                <input type="number" class="form-control"
+                                                                    placeholder="5.000.000"
+                                                                    id="ontime-input">
+                                                                <div class="form-control-icon">
+                                                                    <i class="bi bi-cash-stack"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3 col-12">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="hse-input">HSE Allowance (Rp)</label>
+                                                            <div class="position-relative">
+                                                                <input type="number" class="form-control"
+                                                                    placeholder="5.000.000"
+                                                                    id="hse-input">
+                                                                <div class="form-control-icon">
+                                                                    <i class="bi bi-cash-stack"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3 col-12">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="productivity-input">Productivity Allowance (Rp)</label>
+                                                            <div class="position-relative">
+                                                                <input type="number" class="form-control"
+                                                                    placeholder="5.000.000"
+                                                                    id="productivity-input">
+                                                                <div class="form-control-icon">
+                                                                    <i class="bi bi-cash-stack"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3 col-12">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="fix-input">Fix Allowance (Rp)</label>
+                                                            <div class="position-relative">
+                                                                <input type="number" class="form-control"
+                                                                    placeholder="5.000.000"
+                                                                    id="fix-input">
+                                                                <div class="form-control-icon">
+                                                                    <i class="bi bi-cash-stack"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3 col-12">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="overtime-input">Overtime Allowance (Rp)</label>
+                                                            <div class="position-relative">
+                                                                <input type="number" class="form-control"
+                                                                    placeholder="5.000.000"
+                                                                    id="overtime-input">
+                                                                <div class="form-control-icon">
+                                                                    <i class="bi bi-cash-stack"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3 col-12">
+                                                        <div class="form-group has-icon-left">
+                                                            <label for="away-input">Away Allowance (Rp)</label>
+                                                            <div class="position-relative">
+                                                                <input type="number" class="form-control"
+                                                                    placeholder="5.000.000"
+                                                                    id="away-input">
+                                                                <div class="form-control-icon">
+                                                                    <i class="bi bi-cash-stack"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-content">
+                                    <div class="card-body">
+                                        <form class="form form-vertical">
+                                            <div class="form-body">
+                                                <div class="row">
+                                                    <div class="col-sm-12 d-flex justify-content-end">
+                                                        <input type="button" onclick="saveNewEmployee()"
+                                                            class="btn btn-primary me-1 mb-1" value="Save New Employee"/>
+                                                        <button type="reset"
+                                                            class="btn btn-light-secondary me-1 mb-1">Reset</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- // Basic Vertical form layout section end -->
+
+
+                <!-- // Basic multiple Column Form section start -->
+                <section id="multiple-column-form">
+                    <div class="row match-height">
+                    </div>
+                </section>
+                <!-- // Basic multiple Column Form section end -->
+            </div>
+
+            <footer>
+                <div class="footer clearfix mb-0 text-muted">
+                    <div class="float-start">
+                        <p>2021 &copy; Mazer</p>
+                    </div>
+                    <div class="float-end">
+                        <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a
+                                href="http://ahmadsaugi.com">A. Saugi</a></p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+
+    <script src="assets/js/main.js"></script>
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script src="js/employee.js"></script>
+</body>
+
+</html>
