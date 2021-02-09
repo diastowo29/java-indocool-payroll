@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employee List</title>
+    <title>Fingerprint</title>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -49,8 +49,8 @@
                 <div class="page-title">
                     <div class="row">
                         <div class="col-12 col-md-6 order-md-1 order-last">
-                            <h3>Employee List</h3>
-                            <p class="text-subtitle text-muted">Select for update the employee</p>
+                            <h3>Fingerprint</h3>
+                            <p class="text-subtitle text-muted">Upload fingerprint data</p>
                         </div>
                         <div class="col-12 col-md-6 order-md-2 order-first">
                             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -62,10 +62,27 @@
                         </div>
                     </div>
                 </div>
+                
                 <section class="section">
                     <div class="card">
                         <div class="card-header">
-                            Employee List
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-12">
+                                    <div class="mb-3">
+                                        <label for="formFile" class="form-label">Upload fingerprint file here</label>
+                                        <input class="form-control" type="file" id="formFile">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="section">
+                    <div class="card">
+                        <div class="card-header">
+                            Fingerprint List
                         </div>
                         <div class="card-body">
                             <table class="table table-striped" id="emp-table">
@@ -84,7 +101,6 @@
                             </table>
                         </div>
                     </div>
-
                 </section>
             </div>
 
@@ -113,9 +129,7 @@
         $(".menu .sidebar-item.active").removeClass('active');
         $(".menu .sidebar-item .submenu-item.active").removeClass('active');
 
-        $("#employee-li.sidebar-item").addClass('active');
-        $("#employee-li .submenu").css('display', 'block');
-        $("#list-employee-li.submenu-item").addClass('active');
+        $("#fingerprint-li.sidebar-item").addClass('active');
     </script>
 </body>
 

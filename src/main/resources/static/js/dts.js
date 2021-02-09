@@ -102,7 +102,7 @@ function saveDts () {
 function idChange () {
     var emp_id = $('#emp-id-input').val();
     $.ajax({
-		url: apiPrefix  +'/employee/' + emp_id,
+		url: apiPrefix  +'/employee/get/' + emp_id,
 		contentType: "application/json",
 		dataType: 'json',
 		method: 'get',

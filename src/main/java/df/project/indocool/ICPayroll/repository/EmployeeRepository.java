@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import df.project.indocool.ICPayroll.model.Employee;
 
-public interface EmployeeRepository extends JpaRepository<Employee, Long>{
-
+public interface EmployeeRepository extends JpaRepository<Employee, Long> {
+	Employee findByEmployeeId(String emp_id);
 }

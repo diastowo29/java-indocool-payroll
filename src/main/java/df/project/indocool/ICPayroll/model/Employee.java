@@ -11,6 +11,7 @@ import javax.persistence.Table;
 @Table(name = "ic_employee")
 public class Employee {
 	private long id;
+	private String employeeId;
 	private String workingSite;
 	private String employeeStatus;
 	private String employeeName;
@@ -44,13 +45,14 @@ public class Employee {
 
 	}
 
-	public Employee(String workingSite, String employeeStatus, String employeeName, String placeofBirth,
+	public Employee(String employeeId, String workingSite, String employeeStatus, String employeeName, String placeofBirth,
 			String dateofBirth, String employeeNik, String employeeKk, String employeeNpwp,
 			String employeeMaritalStatus, String motherName, String bpjsTk, String bpjsKs, String employeeAddress,
 			String employeeEmail, String employeePhone, String employeeDivision, String employeeJoinDate,
 			String employeeJobPosition, Double employeeBasicSalary, Double employeeMeal, Double employeeTransport,
 			Double employeeAttendance, Double employeeOntime, Double employeeHse, Double employeeProductivity,
 			Double employeeFix, Double employeeOvertime, Double employeeAway) {
+		this.employeeId = employeeId;
 		this.workingSite = workingSite;
 		this.employeeStatus = employeeStatus;
 		this.employeeName = employeeName;
@@ -89,6 +91,15 @@ public class Employee {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	@Column(name = "employee_id", nullable = false)
+	public String getEmployeeId() {
+		return employeeId;
+	}
+	
+	public void setEmployeeId(String employeeId) {
+		this.employeeId = employeeId;
 	}
 
 	@Column(name = "working_site", nullable = false)

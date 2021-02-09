@@ -1,39 +1,31 @@
 <div th:fragment="the_sidebar">
 	<ul class="menu">
 	    <li class="sidebar-title">Menu</li>
-	    <li class="sidebar-item active ">
+	    <li class="sidebar-item active">
 	        <a href="admin" class='sidebar-link'>
 	            <i class="bi bi-grid-fill"></i>
 	            <span>Dashboard</span>
 	        </a>
 	    </li>
-	    <li class="sidebar-item has-sub">
+	    <li id="employee-li" class="sidebar-item has-sub">
 	        <a href="#" class='sidebar-link'>
 	            <i class="bi bi-people-fill"></i>
 	            <span>Employees</span>
 	        </a>
 	        <ul class="submenu">
-	            <li class="submenu-item ">
+	            <li id="add-employee-li" class="submenu-item">
 	                <a href="emp">Add New</a>
 	            </li>
-	            <li class="submenu-item ">
+	            <li id="list-employee-li" class="submenu-item ">
 	                <a href="emp-list">List Employees</a>
 	            </li>
 	        </ul>
 	    </li>
-	    <li class="sidebar-item has-sub">
-	        <a href="#" class='sidebar-link'>
+	    <li id="fingerprint-li" class="sidebar-item">
+	        <a href="fingerprint" class='sidebar-link'>
 	            <i class="bi bi-hand-index-thumb"></i>
 	            <span>Fingerprint</span>
 	        </a>
-	        <ul class="submenu">
-	            <li class="submenu-item ">
-	                <a href="#">Upload Fingerprint</a>
-	            </li>
-	            <li class="submenu-item ">
-	                <a href="#">List Fingerprints</a>
-	            </li>
-	        </ul>
 	    </li>
 	    <li class="sidebar-item has-sub">
 	        <a href="#" class='sidebar-link'>
@@ -45,7 +37,7 @@
 	                <a href="/dts-new">Add New DTS</a>
 	            </li>
 	            <li class="submenu-item ">
-	                <a href="#">All DTS</a>
+	                <a href="#">DTS List</a>
 	            </li>
 	            <li class="submenu-item ">
 	                <a href="#">DTS Summary</a>
