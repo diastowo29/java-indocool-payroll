@@ -4,11 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import javax.persistence.EntityNotFoundException;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,17 +36,12 @@ public class RestEmployeeController {
 	public Optional<Employee> findEmployeeById(@PathVariable(value = "id") Long id) {
 		return empRepo.findById(id);
 	}
-	
+
 	@GetMapping("/employee/get/{emp_id}")
-	public ResponseEntity<Employee> findEmployeeByEmpId(@PathVariable(value = "emp_id") String emp_id) {
-		Employee emp = empRepo.findByEmployeeId(emp_id);
-		ResponseEntity<Employee> empResponse = new ResponseEntity<Employee>(emp, HttpStatus.OK);
-		if (emp == null) {
-			empResponse = new ResponseEntity<Employee>(new Employee(), HttpStatus.OK);
-		}
-		return empResponse;
+	public Employee findEmployeeByEmpId(@PathVariable(value = "emp_id") String emp_id) {
+		return empRepo.findByEmployeeId(emp_id).orElse(new Employee());
 	}
-	
+
 	@PostMapping("/employee/update")
 	public Employee updateEmployee(@RequestBody Map<String, String> param) {
 		long id = Long.valueOf(param.get("id"));
