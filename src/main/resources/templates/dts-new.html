@@ -292,7 +292,7 @@
 						<div class="col-12">
 							<div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">DTS This Month</h4>
+                                    <h4 class="card-title">Recent DTS</h4>
                                 </div>
                                 <div class="card-body">
                                     <table class="table table-striped" id="dts_table">
@@ -310,7 +310,6 @@
 		                                <tbody id="dts_table_body">
 		                                </tbody>
 	                                </table>
-									<input type="button" class="btn btn-sm btn-warning" value="Export">
                                 </div>
                             </div>
 						</div>
@@ -587,9 +586,13 @@
     <script src="assets/vendors/simple-datatables/simple-datatables.js"></script>
     <script src="assets/vendors/fontawesome/all.min.js"></script>
     <script>
-        // Simple Datatable
-        // let table1 = document.querySelector('#dts_table');
-        // let dataTable = new simpleDatatables.DataTable(table1);
+        $(".menu .sidebar-item.active .submenu").css('display', 'none');
+        $(".menu .sidebar-item.active").removeClass('active');
+        $(".menu .sidebar-item .submenu-item.active").removeClass('active');
+
+        $("#dts-li.sidebar-item").addClass('active');
+        $("#dts-li .submenu").css('display', 'block');
+        $("#add-dts-li.submenu-item").addClass('active');
     </script>
 </body>
 

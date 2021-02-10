@@ -12,4 +12,9 @@ public class DTSController {
 	String loadDtsInput() {
 		return "dts-new";
 	}
+	
+	@RequestMapping("/dts-list")
+	String loadDtsList() {
+		return "dts-list";
+	}
 }

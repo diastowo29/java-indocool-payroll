@@ -554,6 +554,15 @@
     <script src="assets/js/main.js"></script>
     <script src="js/jquery-3.5.1.min.js"></script>
     <script src="js/employee.js"></script>
+    <script>
+        $(".menu .sidebar-item.active .submenu").css('display', 'none');
+        $(".menu .sidebar-item.active").removeClass('active');
+        $(".menu .sidebar-item .submenu-item.active").removeClass('active');
+
+        $("#employee-li.sidebar-item").addClass('active');
+        $("#employee-li .submenu").css('display', 'block');
+        $("#add-employee-li.submenu-item").addClass('active');
+    </script>
 </body>
 
 </html>
