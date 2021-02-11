@@ -16,6 +16,11 @@
     <link rel="stylesheet" href="assets/vendors/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="assets/css/app.css">
     <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon">
+    <style>
+        .hide-this {
+            visibility: hidden;
+        }
+    </style>
 </head>
 
 <body>
@@ -69,10 +74,38 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-lg-6 col-md-12">
+                                <!-- <div class="col-lg-4 col-md-12">
                                     <div class="mb-3">
                                         <label for="formFile" class="form-label">Upload fingerprint file here</label>
                                         <input class="form-control" type="file" id="formFile">
+                                    </div>
+                                </div> -->
+                                <div class="col-md-4 col-12">
+                                    <div class="form-group has-icon-left">
+                                        <label for="emp-status-input">Upload here</label>
+                                        <div class="position-relative">
+                                            <input class="form-control" type="file" id="formFile">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-12">
+                                    <div class="form-group has-icon-left">
+                                        <label for="emp-status-input">Fingerprint Date</label>
+                                        <div class="position-relative">
+                                            <input type="date" class="form-control" 
+                                                placeholder="" id="join-date-input">
+                                            <div class="form-control-icon">
+                                                <i class="bi bi-calendar-day"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-1 col-12">
+                                    <div class="form-group has-icon-left">
+                                        <label class="hide-this">Upload</label>
+                                        <div class="position-relative">
+                                            <input class="btn btn-info" type="button" value="Upload">
+                                        </div>
                                     </div>
                                 </div>
                             </div>

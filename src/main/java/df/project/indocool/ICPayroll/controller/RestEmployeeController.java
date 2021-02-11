@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,6 +36,13 @@ public class RestEmployeeController {
 	@GetMapping("/employee/{id}")
 	public Optional<Employee> findEmployeeById(@PathVariable(value = "id") Long id) {
 		return empRepo.findById(id);
+	}
+	
+	@DeleteMapping("/employee/{id}")
+	public Employee deleteEmployee(@PathVariable(value = "id") Long id) {
+		Employee empToDelete = empRepo.getOne(id);
+		empRepo.delete(empToDelete);
+		return empToDelete;
 	}
 
 	@GetMapping("/employee/get/{emp_id}")

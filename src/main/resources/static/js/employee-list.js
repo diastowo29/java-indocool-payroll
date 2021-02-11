@@ -19,6 +19,10 @@ function getAllEmployee () {
 	})
 }
 
+function confirmDelete (empId) {
+
+}
+
 function generateEmpRow (employee) {
     var table = document.getElementById("emp-table-body");
 
@@ -34,7 +38,7 @@ function generateEmpRow (employee) {
     <a href="emp-update?id=` + employee.id + `" class="btn icon icon-left btn-primary">
         <i class="bi bi-pencil-square"></i>
     </a>
-    <a href="#" class="btn icon icon-left btn-danger">
+    <a href="#" class="btn icon icon-left btn-danger" onclick="confirmDelete(` + employee.id + `)">
         <i class="bi bi-trash-fill"></i>
     </a>`;
 

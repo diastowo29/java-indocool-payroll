@@ -39,14 +39,32 @@ function generateDtsRow (dts) {
     var cell_productivity = row.insertCell(8);
     var cell_away = row.insertCell(9);
 
+    var mealCheck = addCheckBoxDts(dts.employeeMeal);
+    var transportCheck = addCheckBoxDts(dts.employeeTransport);
+    var productivityCheck = addCheckBoxDts(dts.employeeProductivity);
+    var awayCheck = addCheckBoxDts(dts.employeeAway);
+
     cell_emp_id.innerHTML = dts.employeeId;
     cell_job_number.innerHTML = dts.jobNumber;
     cell_date.innerHTML = dts.dtsDate;
     cell_start.innerHTML = dts.startWorking;
     cell_finish.innerHTML = dts.finishWorking;
     cell_working_day.innerHTML = dts.workingDay;
-    cell_meal.innerHTML = dts.employeeMeal;
-    cell_transport.innerHTML = dts.employeeTransport;
-    cell_productivity.innerHTML = dts.employeeProductivity;
-    cell_away.innerHTML = dts.employeeAway;
+    cell_meal.appendChild(mealCheck);
+    cell_transport.appendChild(transportCheck);
+    cell_productivity.appendChild(productivityCheck);
+    cell_away.appendChild(awayCheck);
+}
+
+function addCheckBoxDts (isChecked) {
+    var newCheckbox = document.createElement("input");
+    newCheckbox.setAttribute("type", "checkbox");
+    newCheckbox.setAttribute("class", "form-check-input form-check-success");
+    newCheckbox.setAttribute("name", "customCheck");
+    newCheckbox.disabled = true
+
+    if (isChecked) {
+        newCheckbox.checked = true;
+    }
+    return newCheckbox;
 }

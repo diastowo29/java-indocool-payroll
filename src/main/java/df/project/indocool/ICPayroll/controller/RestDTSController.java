@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import df.project.indocool.ICPayroll.model.DTS;
+import df.project.indocool.ICPayroll.model.custom.DTSCount;
 import df.project.indocool.ICPayroll.repository.DTSRepository;
 
 @RestController
@@ -35,6 +36,12 @@ public class RestDTSController {
 	public DTS getDts(@PathVariable(value = "id") Long id) {
 		return dtsRepo.findById(id).orElse(new DTS());
 	}
+	
+	@GetMapping("/dts/count")
+	public List<DTSCount> getDtsCount () {
+		return dtsRepo.countDtsByDate();
+	}
+	
 
 	@PutMapping("/dts/{id}")
 	public DTS updateDts(@PathVariable(value = "id") Long id, @RequestBody Map<String, String> param) {
