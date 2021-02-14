@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @Table(name = "ic_dts")
 public class DTS {
 	private long id;
-	private long employeeId;
+	private String employeeId;
 	private String presenceStatus;
 	private Date dtsDate;
 	private String jobNumber;
@@ -29,7 +29,7 @@ public class DTS {
 	public DTS() {
 	}
 
-	public DTS(long employeeId, String presenceStatus, Date dtsDate, String jobNumber, String workingDay,
+	public DTS(String employeeId, String presenceStatus, Date dtsDate, String jobNumber, String workingDay,
 			String startWorking, String finishWorking, String jobDesc, Boolean employeeMeal, Boolean employeeTransport,
 			Boolean employeeProductivity, Boolean employeeAway) {
 
@@ -59,11 +59,11 @@ public class DTS {
 	}
 
 	@Column(name = "dts_employee_id", nullable = false)
-	public long getEmployeeId() {
+	public String getEmployeeId() {
 		return employeeId;
 	}
 
-	public void setEmployeeId(long employeeId) {
+	public void setEmployeeId(String employeeId) {
 		this.employeeId = employeeId;
 	}
 

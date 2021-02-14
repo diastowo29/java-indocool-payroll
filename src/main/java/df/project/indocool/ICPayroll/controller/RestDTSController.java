@@ -1,6 +1,8 @@
 package df.project.indocool.ICPayroll.controller;
 
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 
@@ -36,17 +38,44 @@ public class RestDTSController {
 	public DTS getDts(@PathVariable(value = "id") Long id) {
 		return dtsRepo.findById(id).orElse(new DTS());
 	}
-	
+
 	@GetMapping("/dts/count")
-	public List<DTSCount> getDtsCount () {
+	public List<DTSCount> getDtsCount() {
 		return dtsRepo.countDtsByDate();
 	}
-	
+
+	@GetMapping("/dts/{period}/{working_days}")
+	public List<DTS> summaryDts(@PathVariable(value = "period") String period,
+			@PathVariable(value = "working_days") String workingDays) throws ParseException {
+		int year = Integer.valueOf(period.split("-")[1]);
+		int month = Integer.valueOf(period.split("-")[0]);
+		
+		int yearFrom = year;
+		int yearTo = year;
+		
+		int monthFrom = month;
+		int monthTo = month;
+		
+		if (month == 1) {
+			yearFrom = year - 1;
+			monthFrom = 13;
+		}
+		
+		String from = "" + yearFrom + "-" + String.format("%02d", (monthFrom-1)) + "-20";
+		String to = "" + yearTo + "-" + String.format("%02d", monthTo) + "-21";
+				
+		SimpleDateFormat formatter2 = new SimpleDateFormat("yyyy-MM-dd");
+		
+	    java.util.Date dateFrom = formatter2.parse(from);  
+	    java.util.Date dateTo = formatter2.parse(to);
+
+		return dtsRepo.summarizeDts(dateFrom, dateTo);
+	}
 
 	@PutMapping("/dts/{id}")
 	public DTS updateDts(@PathVariable(value = "id") Long id, @RequestBody Map<String, String> param) {
 		DTS updateDts = dtsRepo.findById(id).orElse(new DTS());
-		updateDts.setEmployeeId(Long.valueOf(param.get("employeeId")));
+		updateDts.setEmployeeId(param.get("employeeId"));
 		updateDts.setPresenceStatus(param.get("presenceStatus"));
 		updateDts.setDtsDate(Date.valueOf(param.get("dtsDate")));
 		updateDts.setJobNumber(param.get("jobNumber"));
