@@ -63,6 +63,9 @@ public class RestDTSController {
 		
 		String from = "" + yearFrom + "-" + String.format("%02d", (monthFrom-1)) + "-20";
 		String to = "" + yearTo + "-" + String.format("%02d", monthTo) + "-21";
+		
+		System.out.println(from);
+		System.out.println(to);
 				
 		SimpleDateFormat formatter2 = new SimpleDateFormat("yyyy-MM-dd");
 		

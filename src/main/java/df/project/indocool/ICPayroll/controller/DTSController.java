@@ -17,4 +17,9 @@ public class DTSController {
 	String loadDtsList() {
 		return "dts-list";
 	}
+	
+	@RequestMapping("/dts-summary")
+	String loadDtsSummary() {
+		return "dts-summary";
+	}
 }
