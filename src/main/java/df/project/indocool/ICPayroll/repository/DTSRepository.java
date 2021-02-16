@@ -15,7 +15,7 @@ public interface DTSRepository extends JpaRepository<DTS, Long> {
 			+ "FROM DTS AS id GROUP BY id.dtsDate ")
 	List<DTSCount> countDtsByDate();
 
-	@Query("SELECT id FROM DTS id WHERE id.dtsDate > ?1 and id.dtsDate < ?2 " + "ORDER BY id.employeeId, id.dtsDate")
+	@Query("SELECT id FROM DTS id WHERE id.dtsDate > ?1 and id.dtsDate < ?2 ORDER BY id.employeeId, id.dtsDate")
 	List<DTS> summarizeDts(Date dateFrom, Date dateTo);
 
 }

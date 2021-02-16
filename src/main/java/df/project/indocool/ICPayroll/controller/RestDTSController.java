@@ -3,6 +3,8 @@ package df.project.indocool.ICPayroll.controller;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,14 +22,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import df.project.indocool.ICPayroll.model.DTS;
+import df.project.indocool.ICPayroll.model.Employee;
 import df.project.indocool.ICPayroll.model.custom.DTSCount;
 import df.project.indocool.ICPayroll.repository.DTSRepository;
+import df.project.indocool.ICPayroll.repository.EmployeeRepository;
 
 @RestController
 @RequestMapping("/api/v1")
 public class RestDTSController {
 	@Autowired
 	DTSRepository dtsRepo;
+	@Autowired
+	EmployeeRepository empRepo;
 
 	@GetMapping("/dts")
 	public List<DTS> getAllDts() {
@@ -45,34 +51,119 @@ public class RestDTSController {
 	}
 
 	@GetMapping("/dts/{period}/{working_days}")
-	public List<DTS> summaryDts(@PathVariable(value = "period") String period,
+	public ResponseEntity<Object> summaryDts(@PathVariable(value = "period") String period,
 			@PathVariable(value = "working_days") String workingDays) throws ParseException {
 		int year = Integer.valueOf(period.split("-")[1]);
 		int month = Integer.valueOf(period.split("-")[0]);
-		
+
 		int yearFrom = year;
 		int yearTo = year;
-		
+
 		int monthFrom = month;
 		int monthTo = month;
-		
+
 		if (month == 1) {
 			yearFrom = year - 1;
 			monthFrom = 13;
 		}
-		
-		String from = "" + yearFrom + "-" + String.format("%02d", (monthFrom-1)) + "-20";
+
+		String from = "" + yearFrom + "-" + String.format("%02d", (monthFrom - 1)) + "-20";
 		String to = "" + yearTo + "-" + String.format("%02d", monthTo) + "-21";
-		
+
 		System.out.println(from);
 		System.out.println(to);
-				
-		SimpleDateFormat formatter2 = new SimpleDateFormat("yyyy-MM-dd");
-		
-	    java.util.Date dateFrom = formatter2.parse(from);  
-	    java.util.Date dateTo = formatter2.parse(to);
 
-		return dtsRepo.summarizeDts(dateFrom, dateTo);
+		SimpleDateFormat formatter2 = new SimpleDateFormat("yyyy-MM-dd");
+
+		java.util.Date dateFrom = formatter2.parse(from);
+		java.util.Date dateTo = formatter2.parse(to);
+		List<DTS> dtsList = dtsRepo.summarizeDts(dateFrom, dateTo);
+		List<Employee> empList = empRepo.findAll();
+		ArrayList<HashMap<String, Object>> aList = new ArrayList<>();
+		HashMap<String, Object> dtsMap = new HashMap<>();
+
+		for (DTS dts : dtsList) {
+			int meal = 0;
+			if (dts.getEmployeeMeal()) {
+				meal = 1;
+			}
+			int transport = 0;
+			if (dts.getEmployeeTransport()) {
+				transport = 1;
+			}
+			int away = 0;
+			if (dts.getEmployeeAway()) {
+				away = 1;
+			}
+			int productivity = 0;
+			if (dts.getEmployeeProductivity()) {
+				productivity = 1;
+			}
+			int workingDay = 0;
+			long workingWeekendHours = 0;
+			long workingWeekdayHours = 0;
+			if (dts.getPresenceStatus().equals("Working")) {
+				workingDay = 1;
+				String time1 = dts.getStartWorking();
+				String time2 = dts.getFinishWorking();
+				
+				SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+				java.util.Date date1 = format.parse(time1);
+				java.util.Date date2 = format.parse(time2);
+				long difference = date2.getTime() - date1.getTime();
+				long diffHours = difference / (60 * 60 * 1000) % 24;
+				if (dts.getWorkingDay().equals("WD")) {
+					workingWeekdayHours = diffHours;
+				} else {
+					workingWeekendHours = diffHours;	
+				}
+			}
+			String empName = "";
+			for (Employee employee : empList) {
+				if (dts.getEmployeeId().equals(employee.getEmployeeId())) {
+					empName = employee.getEmployeeName();
+					dtsMap.put("employee_name", empName);
+				}
+			}
+			
+			
+			dtsMap = new HashMap<>();
+			dtsMap.put("employee_id", dts.getEmployeeId());
+
+			boolean isExist = false;
+			int existIndex = 0;
+			for (int i = 0; i < aList.size(); i++) {
+				if (aList.get(i).get("employee_id").equals(dts.getEmployeeId())) {
+					isExist = true;
+					existIndex = i;
+				}
+			}
+			if (!isExist) {
+				dtsMap.put("weekday_hours", workingWeekdayHours);
+				dtsMap.put("weekend_hours", workingWeekendHours);
+				dtsMap.put("meal", meal);
+				dtsMap.put("productivity", productivity);
+				dtsMap.put("away", away);
+				dtsMap.put("transport", transport);
+				dtsMap.put("workingDay", workingDay);
+				aList.add(dtsMap);
+			} else {
+				aList.get(existIndex).put("meal", Integer.valueOf(aList.get(existIndex).get("meal").toString()) + meal);
+				aList.get(existIndex).put("productivity",
+						Integer.valueOf(aList.get(existIndex).get("productivity").toString()) + productivity);
+				aList.get(existIndex).put("away", Integer.valueOf(aList.get(existIndex).get("away").toString()) + away);
+				aList.get(existIndex).put("transport",
+						Integer.valueOf(aList.get(existIndex).get("transport").toString()) + transport);
+				aList.get(existIndex).put("workingDay",
+						Integer.valueOf(aList.get(existIndex).get("workingDay").toString()) + workingDay);
+				aList.get(existIndex).put("weekend_hours",
+						Integer.valueOf(aList.get(existIndex).get("weekend_hours").toString()) + workingWeekendHours);
+				aList.get(existIndex).put("weekday_hours",
+						Integer.valueOf(aList.get(existIndex).get("weekday_hours").toString()) + workingWeekdayHours);
+			}
+		}
+
+		return new ResponseEntity<Object>(aList, HttpStatus.OK);
 	}
 
 	@PutMapping("/dts/{id}")
