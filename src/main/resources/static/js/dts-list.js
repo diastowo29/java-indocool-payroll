@@ -31,13 +31,14 @@ function generateDtsRow (dts) {
     var cell_emp_id = row.insertCell(0);
     var cell_job_number = row.insertCell(1);
     var cell_date = row.insertCell(2);
-    var cell_start = row.insertCell(3);
-    var cell_finish = row.insertCell(4);
-    var cell_working_day = row.insertCell(5);
-    var cell_meal = row.insertCell(6);
-    var cell_transport = row.insertCell(7);
-    var cell_productivity = row.insertCell(8);
-    var cell_away = row.insertCell(9);
+    var cell_status_presence = row.insertCell(3);
+    var cell_start = row.insertCell(4);
+    var cell_finish = row.insertCell(5);
+    var cell_working_day = row.insertCell(6);
+    var cell_meal = row.insertCell(7);
+    var cell_transport = row.insertCell(8);
+    var cell_productivity = row.insertCell(9);
+    var cell_away = row.insertCell(10);
 
     var mealCheck = addCheckBoxDts(dts.employeeMeal);
     var transportCheck = addCheckBoxDts(dts.employeeTransport);
@@ -47,6 +48,7 @@ function generateDtsRow (dts) {
     cell_emp_id.innerHTML = dts.employeeId;
     cell_job_number.innerHTML = dts.jobNumber;
     cell_date.innerHTML = dts.dtsDate;
+    cell_status_presence.innerHTML = dts.presenceStatus;
     cell_start.innerHTML = dts.startWorking;
     cell_finish.innerHTML = dts.finishWorking;
     cell_working_day.innerHTML = dts.workingDay;

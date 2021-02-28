@@ -1,6 +1,7 @@
 package df.project.indocool.ICPayroll.controller;
 
 import java.sql.Date;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -53,6 +54,7 @@ public class RestDTSController {
 	@GetMapping("/dts/{period}/{working_days}")
 	public ResponseEntity<Object> summaryDts(@PathVariable(value = "period") String period,
 			@PathVariable(value = "working_days") String workingDays) throws ParseException {
+	    DecimalFormat doubleFormat = new DecimalFormat("#.##");
 		int year = Integer.valueOf(period.split("-")[1]);
 		int month = Integer.valueOf(period.split("-")[0]);
 
@@ -100,21 +102,35 @@ public class RestDTSController {
 				productivity = 1;
 			}
 			int workingDay = 0;
-			long workingWeekendHours = 0;
-			long workingWeekdayHours = 0;
+			double workingWeekendHours = 0;
+			double workingWeekdayHours = 0;
 			if (dts.getPresenceStatus().equals("Working")) {
-				workingDay = 1;
 				String time1 = dts.getStartWorking();
 				String time2 = dts.getFinishWorking();
 				
 				SimpleDateFormat format = new SimpleDateFormat("HH:mm");
 				java.util.Date date1 = format.parse(time1);
 				java.util.Date date2 = format.parse(time2);
-				long difference = date2.getTime() - date1.getTime();
-				long diffHours = difference / (60 * 60 * 1000) % 24;
+				double difference = date2.getTime() - date1.getTime();
+				double diffHours = (difference / (60 * 1000) / 60);
 				if (dts.getWorkingDay().equals("WD")) {
+					workingDay = 1;
+					String time12 = "12:00";
+					java.util.Date date12 = format.parse(time12);
+					if ((date12.getTime() - date1.getTime()) > 0) {
+						if ((date2.getTime() - date12.getTime()) < 0) {
+							diffHours = diffHours + 1;
+						}
+					}
 					workingWeekdayHours = diffHours;
 				} else {
+					String time12 = "12:00";
+					java.util.Date date12 = format.parse(time12);
+					if ((date12.getTime() - date1.getTime()) > 0) {
+						if ((date2.getTime() - date12.getTime()) > 0) {
+							diffHours = diffHours - 1;
+						}
+					}
 					workingWeekendHours = diffHours;	
 				}
 			}
@@ -157,9 +173,9 @@ public class RestDTSController {
 				aList.get(existIndex).put("workingDay",
 						Integer.valueOf(aList.get(existIndex).get("workingDay").toString()) + workingDay);
 				aList.get(existIndex).put("weekend_hours",
-						Integer.valueOf(aList.get(existIndex).get("weekend_hours").toString()) + workingWeekendHours);
+						Double.valueOf(aList.get(existIndex).get("weekend_hours").toString()) + workingWeekendHours);
 				aList.get(existIndex).put("weekday_hours",
-						Integer.valueOf(aList.get(existIndex).get("weekday_hours").toString()) + workingWeekdayHours);
+						Double.valueOf(aList.get(existIndex).get("weekday_hours").toString()) + workingWeekdayHours);
 			}
 		}
 

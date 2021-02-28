@@ -30,6 +30,55 @@ function doSummarize () {
 	})
 }
 
+function saveSummary () {
+    var month = $('#month-summary-input').val();
+    var year = $('#year-summary-input').val();
+    var workday = $('#workday-summary-input').val();
+    console.log(month)
+    console.log(year)
+    console.log(workday)
+
+    var period = month + '-' + year;
+    $.ajax({
+		url: apiPrefix  + '/dts/' + period + '/' + workday,
+		contentType: "application/json",
+		dataType: 'json',
+		method: 'get',
+		success: function(result) {
+			// location.reload();
+			console.log(result);
+            var summaryData = {
+                summaryName: 'Summary - ' + Math.random().toString(36).slice(2),
+                summaryResult: JSON.stringify(result)
+            }
+            $.ajax({
+                url: apiPrefix  + '/dts-summary/add',
+                contentType: "application/json",
+                dataType: 'json',
+                method: 'post',
+                data: JSON.stringify(summaryData),
+                success: function(summaySaveResult) {
+                    // location.reload();
+                    console.log(summaySaveResult);
+                }
+            })
+		}
+	})
+}
+
+function doCalculate () {
+    var summaryData = $('#summary-data-input').val();
+    $.ajax({
+		url: apiPrefix  + '/calculation/' + summaryData,
+		contentType: "application/json",
+		dataType: 'json',
+		method: 'get',
+		success: function(result) {
+			console.log(result);
+		}
+	})
+}
+
 function generateDtsSummaryRow (dts) {
     var table = document.getElementById("dts_summary_table_body");
 
@@ -41,8 +90,8 @@ function generateDtsSummaryRow (dts) {
     var cell_transport = row.insertCell(4);
     var cell_productivity = row.insertCell(5);
     var cell_away = row.insertCell(6);
-    var cell_overtime_we = row.insertCell(7);
-    var cell_overtime_wd = row.insertCell(8);
+    var cell_overtime_wd = row.insertCell(7);
+    var cell_overtime_we = row.insertCell(8);
     var cell_minus = row.insertCell(9);
 
     cell_emp_id.innerHTML = dts.employee_id;
@@ -52,9 +101,14 @@ function generateDtsSummaryRow (dts) {
     cell_transport.innerHTML = dts.transport;
     cell_productivity.innerHTML = dts.productivity;
     cell_away.innerHTML = dts.away;
-    cell_overtime_we.innerHTML = dts.weekday_hours - (9*21);
-    cell_overtime_wd.innerHTML = 0;
-    cell_minus.innerHTML = (9*21) - dts.weekday_hours;
+    cell_overtime_we.innerHTML = dts.weekend_hours;
+    cell_overtime_wd.innerHTML = dts.weekday_hours - (9*dts.workingDay);
+
+    var minusCalculate = (9*dts.workingDay) - dts.weekday_hours;
+    if (minusCalculate < 0) {
+        minusCalculate = 0;
+    }
+    cell_minus.innerHTML = minusCalculate;
     
 
 }

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DTS List</title>
+    <title>Salary Calculation</title>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -49,14 +49,14 @@
                 <div class="page-title">
                     <div class="row">
                         <div class="col-12 col-md-6 order-md-1 order-last">
-                            <h3>DTS Summary</h3>
+                            <h3>Salary Calculation</h3>
                             <p class="text-subtitle text-muted">Select for update the employee</p>
                         </div>
                         <div class="col-12 col-md-6 order-md-2 order-first">
                             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="admin">Dashboard</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">DTS Summary</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Salary Calculation</li>
                                 </ol>
                             </nav>
                         </div>
@@ -64,67 +64,36 @@
                 </div>
                 <section class="section">
                     <div class="row">
-                        <div class="col-12 col-md-3 col-lg-3">
+                        <div class="col-12 col-md-12 col-lg-12">
                             <div class="card">
                                 <div class="card-header">
-                                    Summary Parameter
+                                    Calculation Parameter
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group has-icon-left">
-                                        <label for="month-summary-input">Month</label>
+                                        <label for="month-summary-input">Summary Data</label>
                                         <div class="position-relative">
                                             <fieldset class="form-group">
-                                                <select class="form-select" id="month-summary-input">
-                                                    <option value="1">January</option>
-                                                    <option value="2">February</option>
-                                                    <option value="3">March</option>
-                                                    <option value="4">April</option>
-                                                    <option value="5">May</option>
-                                                    <option value="6">June</option>
-                                                    <option value="7">July</option>
-                                                    <option value="8">August</option>
-                                                    <option value="9">September</option>
-                                                    <option value="10">October</option>
-                                                    <option value="11">November</option>
-                                                    <option value="12">December</option>
+                                                <select class="form-select" id="summary-data-input">
+                                                    <option value="Summary - 33s8h2hb9gj">Summary - 33s8h2hb9gj</option>
                                                 </select>
                                             </fieldset>
-                                        </div>
-                                    </div>
-                                    <div class="form-group has-icon-left">
-                                        <label for="year-summary-input">Year</label>
-                                        <div class="position-relative">
-                                            <input type="number" class="form-control"
-                                                placeholder="2021" value="2021" id="year-summary-input">
-                                            <div class="form-control-icon">
-                                                <i class="bi bi-calendar-day"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group has-icon-left">
-                                        <label for="workday-summary-input">Total Working Days</label>
-                                        <div class="position-relative">
-                                            <input type="number" class="form-control"
-                                                placeholder="21" value="21" id="workday-summary-input">
-                                            <div class="form-control-icon">
-                                                <i class="bi bi-journal-bookmark"></i>
-                                            </div>
                                         </div>
                                     </div>
                                     <div class="form-body">
                                         <div class="row">
                                             <div class="col-sm-12 d-flex justify-content-end">
-                                                <input type="button" onclick="doSummarize()" class="btn btn-primary me-1 mb-1" value="Summarize"/>
+                                                <input type="button" onclick="doCalculate()" class="btn btn-primary me-1 mb-1" value="Calculate"/>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-md-9 col-lg-9">
+                        <div class="col-12 col-md-12 col-lg-12">
                             <div class="card">
                                 <div class="card-header">
-                                    DTS Summary Result
+                                    Salary Calculation Result
                                 </div>
                                 <div class="card-body">
                                     <table class="table table-striped" id="dts_summary_table">
@@ -148,9 +117,6 @@
                                     <div class="row">
                                         <div class="col-md-3">
                                             <input type="button" class="btn btn-info" value="Export">
-                                        </div>
-                                        <div class="col-md-3">
-                                            <input type="button" class="btn btn-info" onclick="saveSummary()" value="Save Summary">
                                         </div>
                                     </div>
                                 </div>
@@ -185,9 +151,7 @@
         $(".menu .sidebar-item.active").removeClass('active');
         $(".menu .sidebar-item .submenu-item.active").removeClass('active');
 
-        $("#dts-li.sidebar-item").addClass('active');
-        $("#dts-li .submenu").css('display', 'block');
-        $("#dts-summary-li.submenu-item").addClass('active');
+        $("#calc-li.sidebar-item").addClass('active');
     </script>
 </body>
 
