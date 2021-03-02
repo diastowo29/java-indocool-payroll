@@ -1,5 +1,6 @@
 package df.project.indocool.ICPayroll.controller;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -32,6 +33,7 @@ public class RestCalculationController {
 		List<DTSSummaryResults> dtsSummary = dtsSummaryRepo.findAll();
 		List<Employee> employeeList = empRepo.findAll();
 		ArrayList<HashMap<String, Object>> calcList = new ArrayList<>();
+		DecimalFormat df2 = new DecimalFormat("#.##");
 		HashMap<String, Object> dtsMap = new HashMap<>();
 		for (DTSSummaryResults dtsSummaryResults : dtsSummary) {
 			if (dtsSummaryResults.getSummaryName().equals(summaryName)) {
@@ -44,10 +46,15 @@ public class RestCalculationController {
 					double productivitySummary = (double) summaryArray.getJSONObject(i).getInt("productivity");
 					double transportSummary = (double) summaryArray.getJSONObject(i).getInt("transport");
 					double awaySummary = (double) summaryArray.getJSONObject(i).getInt("away");
-					double weekdayHours = (double) summaryArray.getJSONObject(i).getInt("weekday_hours");
-					double weekendHours = (double) summaryArray.getJSONObject(i).getInt("weekend_hours");
+					double weekdayHours = (double) summaryArray.getJSONObject(i).getDouble("weekday_hours");
+					double weekendHours = (double) summaryArray.getJSONObject(i).getDouble("weekend_hours");
 					double workingDay = (double) summaryArray.getJSONObject(i).getInt("workingDay");
-					double overtimeSummary = weekdayHours - ((9 * workingDay) + weekendHours);
+					int unpaid = summaryArray.getJSONObject(i).getInt("unpaid");
+					
+					double weekdayOvertime = weekdayHours - (9 * workingDay);
+					double weekendOvertime = weekendHours;
+					double overtimeSummary = weekdayOvertime + weekendOvertime;
+					System.out.println(overtimeSummary);
 					if (overtimeSummary < 0) {
 						overtimeSummary = (double) 0;
 					}
@@ -62,14 +69,20 @@ public class RestCalculationController {
 							double transportAllowance = employee.getEmployeeTransport() * transportSummary;
 							double awayAllowance = employee.getEmployeeAway() * awaySummary;
 
-							double overtime = employee.getEmployeeOvertime() * (overtimeSummary);
-							dtsMap.put("name", employeeName);
+							double overtimeCalculation = employee.getEmployeeOvertime() * (overtimeSummary);
+							double unpaidCalculation = (employee.getEmployeeBasicSalary() / 22) * unpaid;
+							dtsMap.put("employee_name", employeeName);
 							dtsMap.put("basic_salary", basicSalary);
 							dtsMap.put("meals", mealsAllowance);
 							dtsMap.put("productivity", productivityAllowance);
 							dtsMap.put("transport", transportAllowance);
 							dtsMap.put("away", awayAllowance);
-							dtsMap.put("overtime", overtime);
+							dtsMap.put("overtime", overtimeCalculation);
+							dtsMap.put("unpaid", unpaidCalculation);
+							dtsMap.put("workingDay", workingDay);
+							dtsMap.put("employee_id", employee.getEmployeeId());
+							dtsMap.put("total_amount", (basicSalary + mealsAllowance + productivityAllowance
+									+ transportAllowance + awayAllowance + overtimeCalculation) - unpaidCalculation);
 
 							calcList.add(dtsMap);
 						}

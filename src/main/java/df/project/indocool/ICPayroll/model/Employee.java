@@ -40,18 +40,20 @@ public class Employee {
 	private Double employeeFix;
 	private Double employeeOvertime;
 	private Double employeeAway;
+	private String employeeLevel;
+	private String employeeBlood;
 
 	public Employee() {
 
 	}
 
-	public Employee(String employeeId, String workingSite, String employeeStatus, String employeeName, String placeofBirth,
-			String dateofBirth, String employeeNik, String employeeKk, String employeeNpwp,
+	public Employee(String employeeId, String workingSite, String employeeStatus, String employeeName,
+			String placeofBirth, String dateofBirth, String employeeNik, String employeeKk, String employeeNpwp,
 			String employeeMaritalStatus, String motherName, String bpjsTk, String bpjsKs, String employeeAddress,
 			String employeeEmail, String employeePhone, String employeeDivision, String employeeJoinDate,
 			String employeeJobPosition, Double employeeBasicSalary, Double employeeMeal, Double employeeTransport,
-			Double employeeAttendance, Double employeeOntime, Double employeeHse, Double employeeProductivity,
-			Double employeeFix, Double employeeOvertime, Double employeeAway) {
+			 Double employeeAttendance, Double employeeOntime, Double employeeHse,  Double employeeProductivity,
+			 Double employeeFix,  Double employeeOvertime, Double employeeAway, String employeeLevel, String employeeBlood) {
 		this.employeeId = employeeId;
 		this.workingSite = workingSite;
 		this.employeeStatus = employeeStatus;
@@ -81,6 +83,8 @@ public class Employee {
 		this.employeeFix = employeeFix;
 		this.employeeOvertime = employeeOvertime;
 		this.employeeAway = employeeAway;
+		this.employeeLevel = employeeLevel;
+		this.employeeBlood = employeeBlood;
 	}
 
 	@Id
@@ -97,7 +101,7 @@ public class Employee {
 	public String getEmployeeId() {
 		return employeeId;
 	}
-	
+
 	public void setEmployeeId(String employeeId) {
 		this.employeeId = employeeId;
 	}
@@ -352,6 +356,24 @@ public class Employee {
 
 	public void setEmployeeTransport(Double employeeTransport) {
 		this.employeeTransport = employeeTransport;
+	}
+
+	@Column(name = "employee_level", nullable = false)
+	public String getEmployeeLevel() {
+		return employeeLevel;
+	}
+
+	public void setEmployeeLevel(String employeeLevel) {
+		this.employeeLevel = employeeLevel;
+	}
+
+	@Column(name = "employee_blood", nullable = true)
+	public String getEmployeeBlood() {
+		return employeeBlood;
+	}
+	
+	public void setEmployeeBlood(String employeeBlood) {
+		this.employeeBlood = employeeBlood;
 	}
 
 }

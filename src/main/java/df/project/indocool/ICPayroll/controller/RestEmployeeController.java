@@ -75,13 +75,15 @@ public class RestEmployeeController {
 		emp.setEmployeeBasicSalary(Double.valueOf(param.get("employeeBasicSalary")));
 		emp.setEmployeeMeal(Double.valueOf(param.get("employeeMeal")));
 		emp.setEmployeeTransport(Double.valueOf(param.get("employeeTransport")));
-		emp.setEmployeeAttendance(Double.valueOf(param.get("employeeAttendance")));
-		emp.setEmployeeOntime(Double.valueOf(param.get("employeeOntime")));
-		emp.setEmployeeHse(Double.valueOf(param.get("employeeHse")));
+		emp.setEmployeeAttendance(0.0);
+		emp.setEmployeeOntime(0.0);
+		emp.setEmployeeHse(0.0);
 		emp.setEmployeeProductivity(Double.valueOf(param.get("employeeProductivity")));
-		emp.setEmployeeFix(Double.valueOf(param.get("employeeFix")));
+		emp.setEmployeeFix(0.0);
 		emp.setEmployeeOvertime(Double.valueOf(param.get("employeeOvertime")));
 		emp.setEmployeeAway(Double.valueOf(param.get("employeeAway")));
+		emp.setEmployeeLevel(param.get("employeeLevel"));
+		emp.setEmployeeBlood(param.get("employeeBlood"));
 
 		return empRepo.save(emp);
 	}

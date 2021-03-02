@@ -45,13 +45,14 @@
 	var basic_salary = $('#basic-salary-input').val();
 	var meal = $('#meal-input').val();
 	var transport = $('#transport-input').val();
-	var attendance = $('#attendance-input').val();
-	var ontime = $('#ontime-input').val();
-	var hse = $('#hse-input').val();
+	// var attendance = $('#attendance-input').val();
+	// var ontime = $('#ontime-input').val();
+	// var hse = $('#hse-input').val();
 	var productivity = $('#productivity-input').val();
-	var fix = $('#fix-input').val();
+	// var fix = $('#fix-input').val();
 	var overtime = $('#overtime-input').val();
 	var away = $('#away-input').val();
+	var level = $('#level-input').val();
 
 	var thisEmployee = {
 		id: id,
@@ -76,13 +77,15 @@
 		employeeBasicSalary : basic_salary,
 		employeeMeal : meal,
 		employeeTransport : transport,
-		employeeAttendance : attendance,
-		employeeOntime : ontime,
-		employeeHse : hse,
+		// employeeAttendance : attendance,
+		// employeeOntime : ontime,
+		// employeeHse : hse,
 		employeeProductivity : productivity,
-		employeeFix : fix,
+		// employeeFix : fix,
 		employeeOvertime : overtime,
-		employeeAway : away
+		employeeAway : away,
+		employeeLevel : level,
+		employeeBlood: blood
 	 }
 
 	 $.ajax({
@@ -122,13 +125,14 @@
 	 var basic_salary = $('#basic-salary-input').val();
 	 var meal = $('#meal-input').val();
 	 var transport = $('#transport-input').val();
-	 var attendance = $('#attendance-input').val();
-	 var ontime = $('#ontime-input').val();
-	 var hse = $('#hse-input').val();
+	//  var attendance = $('#attendance-input').val();
+	//  var ontime = $('#ontime-input').val();
+	//  var hse = $('#hse-input').val();
 	 var productivity = $('#productivity-input').val();
-	 var fix = $('#fix-input').val();
+	//  var fix = $('#fix-input').val();
 	 var overtime = $('#overtime-input').val();
 	 var away = $('#away-input').val();
+	 var level = $('#level-input').val();
 
 	 var newEmployee = {
 		employeeId: emp_id,
@@ -153,13 +157,15 @@
 		employeeBasicSalary : basic_salary,
 		employeeMeal : meal,
 		employeeTransport : transport,
-		employeeAttendance : attendance,
-		employeeOntime : ontime,
-		employeeHse : hse,
+		// employeeAttendance : attendance,
+		// employeeOntime : ontime,
+		// employeeHse : hse,
 		employeeProductivity : productivity,
-		employeeFix : fix,
+		// employeeFix : fix,
 		employeeOvertime : overtime,
-		employeeAway : away
+		employeeAway : away,
+		employeeLevel : level,
+		employeeBlood: blood
 	 }
 
 	 $.ajax({

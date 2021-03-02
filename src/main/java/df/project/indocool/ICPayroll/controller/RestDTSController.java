@@ -84,26 +84,30 @@ public class RestDTSController {
 		ArrayList<HashMap<String, Object>> aList = new ArrayList<>();
 		HashMap<String, Object> dtsMap = new HashMap<>();
 
+		
 		for (DTS dts : dtsList) {
+
+			String empName = "";
+			String empLevel = "";
+			for (Employee employee : empList) {
+				if (dts.getEmployeeId().equals(employee.getEmployeeId())) {
+					empName = employee.getEmployeeName();
+					dtsMap.put("employee_name", empName);
+					empLevel = employee.getEmployeeLevel();
+				}
+			}
+			int unpaid = 0;
 			int meal = 0;
-			if (dts.getEmployeeMeal()) {
-				meal = 1;
-			}
 			int transport = 0;
-			if (dts.getEmployeeTransport()) {
-				transport = 1;
-			}
 			int away = 0;
 			if (dts.getEmployeeAway()) {
 				away = 1;
 			}
 			int productivity = 0;
-			if (dts.getEmployeeProductivity()) {
-				productivity = 1;
-			}
 			int workingDay = 0;
 			double workingWeekendHours = 0;
 			double workingWeekdayHours = 0;
+			
 			if (dts.getPresenceStatus().equals("Working")) {
 				String time1 = dts.getStartWorking();
 				String time2 = dts.getFinishWorking();
@@ -123,6 +127,29 @@ public class RestDTSController {
 						}
 					}
 					workingWeekdayHours = diffHours;
+					
+					if (empLevel.equals("L2") || empLevel.equals("L1.2")) {
+						if (workingWeekdayHours >= 15) {
+							meal = 1;
+							transport = 1;
+						}
+					} else if (empLevel.equals("L1.1")) {
+						if (workingWeekdayHours >= 15) {
+							meal = 1;
+							transport = 1;
+							productivity = 1;
+						}
+					} else {
+						if (dts.getEmployeeMeal()) {
+							meal = 1;
+						}
+						if (dts.getEmployeeTransport()) {
+							transport = 1;
+						}
+						if (dts.getEmployeeProductivity()) {
+							productivity = 1;
+						}
+					}
 				} else {
 					String time12 = "12:00";
 					java.util.Date date12 = format.parse(time12);
@@ -131,15 +158,21 @@ public class RestDTSController {
 							diffHours = diffHours - 1;
 						}
 					}
-					workingWeekendHours = diffHours;	
+					workingWeekendHours = diffHours;
+					if (dts.getEmployeeMeal()) {
+						meal = 1;
+					}
+					if (dts.getEmployeeTransport()) {
+						transport = 1;
+					}
+					if (dts.getEmployeeProductivity()) {
+						productivity = 1;
+					}
 				}
 			}
-			String empName = "";
-			for (Employee employee : empList) {
-				if (dts.getEmployeeId().equals(employee.getEmployeeId())) {
-					empName = employee.getEmployeeName();
-					dtsMap.put("employee_name", empName);
-				}
+			
+			if (dts.getPresenceStatus().equals("UP") || dts.getPresenceStatus().equals("SUP")) {
+				unpaid = unpaid + 1;
 			}
 			
 			
@@ -162,6 +195,7 @@ public class RestDTSController {
 				dtsMap.put("away", away);
 				dtsMap.put("transport", transport);
 				dtsMap.put("workingDay", workingDay);
+				dtsMap.put("unpaid", unpaid);
 				aList.add(dtsMap);
 			} else {
 				aList.get(existIndex).put("meal", Integer.valueOf(aList.get(existIndex).get("meal").toString()) + meal);
@@ -172,6 +206,8 @@ public class RestDTSController {
 						Integer.valueOf(aList.get(existIndex).get("transport").toString()) + transport);
 				aList.get(existIndex).put("workingDay",
 						Integer.valueOf(aList.get(existIndex).get("workingDay").toString()) + workingDay);
+				aList.get(existIndex).put("unpaid",
+						Integer.valueOf(aList.get(existIndex).get("unpaid").toString()) + unpaid);
 				aList.get(existIndex).put("weekend_hours",
 						Double.valueOf(aList.get(existIndex).get("weekend_hours").toString()) + workingWeekendHours);
 				aList.get(existIndex).put("weekday_hours",
