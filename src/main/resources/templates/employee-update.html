@@ -171,18 +171,18 @@
                                                             <div class="position-relative">
                                                                 <fieldset class="form-group">
 				                                                    <select class="form-select" id="level-input">
-				                                                        <option value="L1.1">Level 1.1</option>
-				                                                        <option value="L1.2">Level 1.2</option>
-				                                                        <option value="L2">Level 2</option>
-				                                                        <option value="L3">Level 3</option>
-				                                                        <option value="L4">Level 4</option>
-				                                                        <option value="L5">Level 5</option>
-				                                                        <option value="L6">Level 6</option>
-				                                                        <option value="L7">Level 7</option>
-				                                                        <option value="L8">Level 8</option>
-				                                                        <option value="L9">Level 9</option>
-				                                                        <option value="L10">Level 10</option>
-				                                                        <option value="DIR">DIR</option>
+				                                                        <option th:selected="${emp.employeeLevel} == 'L1.1' ? selected" value="L1.1">Level 1.1</option>
+				                                                        <option th:selected="${emp.employeeLevel} == 'L1.2' ? selected" value="L1.2">Level 1.2</option>
+				                                                        <option th:selected="${emp.employeeLevel} == 'L2' ? selected" value="L2">Level 2</option>
+				                                                        <option th:selected="${emp.employeeLevel} == 'L3' ? selected" value="L3">Level 3</option>
+				                                                        <option th:selected="${emp.employeeLevel} == 'L4' ? selected" value="L4">Level 4</option>
+				                                                        <option th:selected="${emp.employeeLevel} == 'L5' ? selected" value="L5">Level 5</option>
+				                                                        <option th:selected="${emp.employeeLevel} == 'L6' ? selected" value="L6">Level 6</option>
+				                                                        <option th:selected="${emp.employeeLevel} == 'L7' ? selected" value="L7">Level 7</option>
+				                                                        <option th:selected="${emp.employeeLevel} == 'L8' ? selected" value="L8">Level 8</option>
+				                                                        <option th:selected="${emp.employeeLevel} == 'L9' ? selected" value="L9">Level 9</option>
+				                                                        <option th:selected="${emp.employeeLevel} == 'L10' ? selected" value="L10">Level 10</option>
+				                                                        <option th:selected="${emp.employeeLevel} == 'DIR' ? selected" value="DIR">DIR</option>
 				                                                    </select>
 				                                                </fieldset>
                                                             </div>
@@ -206,10 +206,10 @@
                                                             <div class="position-relative">
                                                                 <fieldset class="form-group">
 				                                                    <select class="form-select" id="blood-input">
-				                                                        <option>A</option>
-				                                                        <option>B</option>
-				                                                        <option>AB</option>
-				                                                        <option>O</option>
+				                                                        <option th:selected="${emp.employeeBlood} == 'A' ? selected" value="A">A</option>
+				                                                        <option th:selected="${emp.employeeBlood} == 'B' ? selected" value="B">B</option>
+				                                                        <option th:selected="${emp.employeeBlood} == 'AB' ? selected" value="AB">AB</option>
+				                                                        <option th:selected="${emp.employeeBlood} == 'O' ? selected" value="O">O</option>
 				                                                    </select>
 				                                                </fieldset>
                                                                 <!-- <div class="form-control-icon">

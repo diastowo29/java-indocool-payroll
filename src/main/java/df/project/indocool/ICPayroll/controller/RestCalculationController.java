@@ -73,6 +73,7 @@ public class RestCalculationController {
 							double unpaidCalculation = (employee.getEmployeeBasicSalary() / 22) * unpaid;
 							dtsMap.put("employee_name", employeeName);
 							dtsMap.put("basic_salary", basicSalary);
+							dtsMap.put("employee_level", employee.getEmployeeLevel());
 							dtsMap.put("meals", mealsAllowance);
 							dtsMap.put("productivity", productivityAllowance);
 							dtsMap.put("transport", transportAllowance);

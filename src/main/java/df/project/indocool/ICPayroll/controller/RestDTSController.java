@@ -1,7 +1,6 @@
 package df.project.indocool.ICPayroll.controller;
 
 import java.sql.Date;
-import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -54,7 +53,7 @@ public class RestDTSController {
 	@GetMapping("/dts/{period}/{working_days}")
 	public ResponseEntity<Object> summaryDts(@PathVariable(value = "period") String period,
 			@PathVariable(value = "working_days") String workingDays) throws ParseException {
-	    DecimalFormat doubleFormat = new DecimalFormat("#.##");
+//	    DecimalFormat doubleFormat = new DecimalFormat("#.##");
 		int year = Integer.valueOf(period.split("-")[1]);
 		int month = Integer.valueOf(period.split("-")[0]);
 
@@ -84,7 +83,6 @@ public class RestDTSController {
 		ArrayList<HashMap<String, Object>> aList = new ArrayList<>();
 		HashMap<String, Object> dtsMap = new HashMap<>();
 
-		
 		for (DTS dts : dtsList) {
 
 			String empName = "";
@@ -107,11 +105,11 @@ public class RestDTSController {
 			int workingDay = 0;
 			double workingWeekendHours = 0;
 			double workingWeekdayHours = 0;
-			
+
 			if (dts.getPresenceStatus().equals("Working")) {
 				String time1 = dts.getStartWorking();
 				String time2 = dts.getFinishWorking();
-				
+
 				SimpleDateFormat format = new SimpleDateFormat("HH:mm");
 				java.util.Date date1 = format.parse(time1);
 				java.util.Date date2 = format.parse(time2);
@@ -127,11 +125,14 @@ public class RestDTSController {
 						}
 					}
 					workingWeekdayHours = diffHours;
-					
+
 					if (empLevel.equals("L2") || empLevel.equals("L1.2")) {
 						if (workingWeekdayHours >= 15) {
 							meal = 1;
 							transport = 1;
+						}
+						if (dts.getEmployeeProductivity()) {
+							productivity = 1;
 						}
 					} else if (empLevel.equals("L1.1")) {
 						if (workingWeekdayHours >= 15) {
@@ -170,12 +171,11 @@ public class RestDTSController {
 					}
 				}
 			}
-			
+
 			if (dts.getPresenceStatus().equals("UP") || dts.getPresenceStatus().equals("SUP")) {
 				unpaid = unpaid + 1;
 			}
-			
-			
+
 			dtsMap = new HashMap<>();
 			dtsMap.put("employee_id", dts.getEmployeeId());
 

@@ -88,17 +88,20 @@ function generateCalculationRow (calc) {
     var row = table.insertRow(0);
     var cell_emp_id = row.insertCell(0);
     var cell_emp_name = row.insertCell(1);
-    var cell_days_worked = row.insertCell(2);
-    var cell_meal = row.insertCell(3);
-    var cell_transport = row.insertCell(4);
-    var cell_productivity = row.insertCell(5);
-    var cell_away = row.insertCell(6);
-    var call_overtime = row.insertCell(7);
-    var cell_minus = row.insertCell(8);
-    var cell_total = row.insertCell(9);
+    var cell_emp_level = row.insertCell(2);
+    var cell_days_worked = row.insertCell(3);
+    var cell_meal = row.insertCell(4);
+    var cell_transport = row.insertCell(5);
+    var cell_productivity = row.insertCell(6);
+    var cell_away = row.insertCell(7);
+    var call_overtime = row.insertCell(8);
+    var cell_minus = row.insertCell(9);
+    var cell_unpaid = row.insertCell(10);
+    var cell_total = row.insertCell(11);
 
     cell_emp_id.innerHTML = calc.employee_id;
     cell_emp_name.innerHTML = calc.employee_name;
+    cell_emp_level.innerHTML = calc.employee_level;
     cell_days_worked.innerHTML = calc.workingDay;
     cell_meal.innerHTML = calc.meals;
     cell_transport.innerHTML = calc.transport;
@@ -106,6 +109,7 @@ function generateCalculationRow (calc) {
     cell_away.innerHTML = calc.away;
     call_overtime.innerHTML = calc.overtime;
     cell_minus.innerHTML = 0;
+    cell_unpaid.innerHTML = calc.unpaid;
     cell_total.innerHTML = calc.total_amount;
 }
 
