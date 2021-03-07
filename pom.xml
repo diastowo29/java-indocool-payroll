@@ -11,7 +11,7 @@
 	<groupId>df.project.indocool</groupId>
 	<artifactId>ISCPayroll</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>ISCPayroll</name>
 	<description>Indocool Payroll System</description>
 	<properties>

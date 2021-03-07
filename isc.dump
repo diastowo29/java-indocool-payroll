@@ -1,0 +1,430 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 12.3
+-- Dumped by pg_dump version 12.3
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: ic_dts; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.ic_dts (
+    id bigint NOT NULL,
+    dts_date date NOT NULL,
+    dts_away boolean NOT NULL,
+    dts_employee_id character varying NOT NULL,
+    dts_meal boolean NOT NULL,
+    dts_productivity boolean NOT NULL,
+    dts_transport boolean NOT NULL,
+    dts_finish character varying(255) NOT NULL,
+    dts_jobdesc character varying(255),
+    dts_job_number character varying(255) NOT NULL,
+    dts_presence character varying(255) NOT NULL,
+    dts_start character varying(255) NOT NULL,
+    dts_working_day character varying(255) NOT NULL
+);
+
+
+ALTER TABLE public.ic_dts OWNER TO postgres;
+
+--
+-- Name: ic_dts_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.ic_dts_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.ic_dts_id_seq OWNER TO postgres;
+
+--
+-- Name: ic_dts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.ic_dts_id_seq OWNED BY public.ic_dts.id;
+
+
+--
+-- Name: ic_employee; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.ic_employee (
+    id bigint NOT NULL,
+    employee_bpjs_ks character varying(255) NOT NULL,
+    employee_bpjs_tk character varying(255) NOT NULL,
+    employee_dob character varying(255) NOT NULL,
+    employee_address character varying(255) NOT NULL,
+    employee_attendance double precision NOT NULL,
+    employee_away double precision NOT NULL,
+    employee_basic_salary double precision NOT NULL,
+    employee_division character varying(255) NOT NULL,
+    employee_email character varying(255) NOT NULL,
+    employee_fix double precision NOT NULL,
+    employee_hse double precision NOT NULL,
+    employee_id character varying(255) NOT NULL,
+    employee_job_position character varying(255) NOT NULL,
+    employee_join_date character varying(255) NOT NULL,
+    employee_kk character varying(255) NOT NULL,
+    employee_marital_status character varying(255) NOT NULL,
+    employee_meal double precision NOT NULL,
+    employee_name character varying(255) NOT NULL,
+    employee_nik character varying(255) NOT NULL,
+    employee_npwp character varying(255) NOT NULL,
+    employee_ontime double precision NOT NULL,
+    employee_overtime double precision NOT NULL,
+    employee_phone character varying(255) NOT NULL,
+    employee_productivity double precision NOT NULL,
+    employee_status character varying(255) NOT NULL,
+    employee_transport double precision NOT NULL,
+    employee_mother_name character varying(255) NOT NULL,
+    employee_pob character varying(255) NOT NULL,
+    working_site character varying(255) NOT NULL,
+    employee_level character varying(255),
+    employee_blood character varying(255)
+);
+
+
+ALTER TABLE public.ic_employee OWNER TO postgres;
+
+--
+-- Name: ic_employee_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.ic_employee_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.ic_employee_id_seq OWNER TO postgres;
+
+--
+-- Name: ic_employee_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.ic_employee_id_seq OWNED BY public.ic_employee.id;
+
+
+--
+-- Name: ic_summary_result; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.ic_summary_result (
+    id bigint NOT NULL,
+    dts_summary_name character varying(255) NOT NULL,
+    dts_summary_result text NOT NULL
+);
+
+
+ALTER TABLE public.ic_summary_result OWNER TO postgres;
+
+--
+-- Name: ic_summary_result_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.ic_summary_result_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.ic_summary_result_id_seq OWNER TO postgres;
+
+--
+-- Name: ic_summary_result_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.ic_summary_result_id_seq OWNED BY public.ic_summary_result.id;
+
+
+--
+-- Name: ic_dts id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.ic_dts ALTER COLUMN id SET DEFAULT nextval('public.ic_dts_id_seq'::regclass);
+
+
+--
+-- Name: ic_employee id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.ic_employee ALTER COLUMN id SET DEFAULT nextval('public.ic_employee_id_seq'::regclass);
+
+
+--
+-- Name: ic_summary_result id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.ic_summary_result ALTER COLUMN id SET DEFAULT nextval('public.ic_summary_result_id_seq'::regclass);
+
+
+--
+-- Data for Name: ic_dts; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.ic_dts (id, dts_date, dts_away, dts_employee_id, dts_meal, dts_productivity, dts_transport, dts_finish, dts_jobdesc, dts_job_number, dts_presence, dts_start, dts_working_day) FROM stdin;
+15	2020-12-24	f	001	f	f	f	00:00	AL	0	AL	00:00	WD
+14	2020-12-23	f	001	t	t	t	18:00	working	1234	Working	08:00	WD
+19	2020-12-28	f	001	t	t	t	18:00	working	1234	Working	08:00	WD
+20	2020-12-29	f	001	t	t	t	18:00	working	1234	Working	08:00	WD
+21	2020-12-30	f	001	t	t	t	18:00	working	1234	Working	08:00	WD
+22	2020-12-31	f	001	t	t	t	18:00	working	1234	Working	08:00	WD
+26	2021-01-04	f	001	t	t	t	18:00	working job 1234	1234	Working	08:00	WD
+42	2021-01-20	f	001	t	t	t	18:00	working	1234	Working	08:00	WD
+41	2021-01-19	f	001	t	t	t	18:00	working	1234	Working	08:00	WD
+40	2021-01-18	f	001	t	t	t	18:00	working	1234	Working	08:00	WD
+39	2021-01-17	f	001	f	f	f		0	0	OFF		WE
+38	2021-01-16	f	001	f	f	f		0	0	OFF		WE
+37	2021-01-15	f	001	t	t	t	18:00	working	1234	Working	08:00	WD
+36	2021-01-14	f	001	t	t	t	18:00	working	1234	Working	08:00	WD
+35	2021-01-13	f	001	t	t	t	18:00	working	1234	Working	08:00	WD
+34	2021-01-12	f	001	t	t	t	18:00	working	1234	Working	08:00	WD
+33	2021-01-11	f	001	t	t	t	18:00	working	1234	Working	08:00	WD
+32	2021-01-10	f	001	f	f	f			0	OFF		WE
+31	2021-01-09	f	001	f	f	f			0	OFF		WE
+30	2021-01-08	f	001	t	t	t	18:00	working job 1234	1234	Working	08:00	WD
+29	2021-01-07	f	001	t	t	t	18:00	working job 1234	1234	Working	08:00	WD
+28	2021-01-06	f	001	t	t	t	18:00	working job 1234	1234	Working	08:00	WD
+27	2021-01-05	f	001	t	t	t	18:00	working job 1234	1234	Working	08:00	WD
+18	2020-12-27	f	001	f	f	f		weekend	0	OFF		WE
+17	2020-12-26	f	001	f	f	f		weekend	0	OFF		WE
+25	2021-01-03	f	001	f	f	f		off	0	OFF		WE
+24	2021-01-02	f	001	f	f	f		off	0	OFF		WE
+23	2021-01-01	f	001	f	f	f		off	0	OFF		PH
+16	2020-12-25	f	001	f	f	f		CHRISTMAS	0	OFF		PH
+10	2020-12-21	f	001	t	t	t	18:00	working job 1234	1234	Working	08:00	WD
+90	2020-12-21	f	108	t	t	t	17:00	working 1234	1234	Working	08:00	WD
+12	2020-12-22	f	001	t	t	t	18:00	workong job 1234	1234	Working	08:00	WD
+95	2020-12-28	f	108	t	t	t	19:00	working 1234	1234	Working	08:00	WD
+47	2020-12-21	f	022	t	t	t	17:00	purchasing	1234	Working	08:00	WD
+48	2020-12-22	f	022	t	t	t	17:00	purchasing	1234	Working	08:00	WD
+49	2020-12-23	f	022	t	t	t	17:00	purchasing	1234	Working	08:00	WD
+50	2020-12-24	f	022	f	f	t	11:00	purchasing	1234	Working	08:00	WD
+53	2020-12-30	f	022	t	t	t	18:30	purchasing	1234	Working	08:00	WD
+54	2020-12-31	f	022	t	t	t	22:00	purchasing	1234	Working	07:30	WD
+55	2021-01-04	f	022	t	t	t	18:00	purchasing	1234	Working	08:00	WD
+56	2021-01-05	f	022	t	t	t	17:15	purchasing	1234	Working	08:00	WD
+57	2021-01-06	f	022	t	t	t	18:00	purchasing	1234	Working	08:00	WD
+58	2021-01-07	f	022	t	t	t	17:00	purchasing	1234	Working	08:00	WD
+59	2021-01-08	f	022	t	t	t	17:00	purchasing	1234	Working	08:00	WD
+60	2021-01-11	f	022	t	t	t	17:30	purchasing	1234	Working	08:00	WD
+63	2021-01-14	f	022	t	t	t	17:00	purchasing	1234	Working	08:00	WD
+61	2021-01-12	f	022	t	t	t	17:00	purchasing	1234	Working	08:00	WD
+62	2021-01-13	f	022	t	t	t	17:00	purchasing	1234	Working	08:00	WD
+64	2021-01-15	f	022	t	t	t	17:15	purchasing	1234	Working	08:00	WD
+65	2021-01-18	f	022	t	t	t	17:00	purchasing	1234	Working	08:00	WD
+67	2021-01-20	f	022	t	t	t	17:00	purchasing	1234	Working	08:00	WD
+51	2020-12-28	f	022	t	t	t	18:00	purchasing	1234	Working	08:00	WD
+52	2020-12-29	f	022	t	t	t	19:45	purchasing	1234	Working	08:00	WD
+66	2021-01-19	f	022	t	t	t	16:00	purchasing	1234	Working	07:30	WD
+68	2020-12-21	f	004	t	t	t	17:00	WORKING 1234	1234	Working	08:15	WD
+69	2020-12-22	f	004	t	t	t	17:00	WORKING 1234	1234	Working	08:00	WD
+70	2020-12-23	f	004	t	t	t	17:00	WORKING 1234	1234	Working	08:00	WD
+71	2020-12-24	f	004	f	f	f	12:00	ANNUAL LEAVE	1234	AL	00:00	WD
+72	2020-12-28	f	004	f	f	f	12:00	ANNUAL LEAVE		AL	00:00	WD
+73	2020-12-29	f	004	f	f	f	12:00	UNPAID LEAVE 		UP	00:00	WD
+91	2020-12-22	f	108	t	t	t	18:00	working 1234	1234	Working	08:00	WD
+74	2020-12-30	f	004	t	t	t	17:00	WORKING 1234	1234	Working	08:00	WD
+75	2020-12-31	f	004	t	t	t	22:00	WORKING 1234	1234	Working	08:00	WD
+76	2021-01-04	f	004	t	t	t	17:00	WORKING 1234	1234	Working	08:00	WD
+77	2021-01-05	f	004	t	t	t	17:00	WORKING 1234	1234	Working	08:00	WD
+78	2021-01-06	f	004	t	t	t	17:00	WORKING 1234	1234	Working	08:00	WD
+79	2021-01-07	f	004	t	t	t	17:00	WORKING 1234	1234	Working	08:00	WD
+80	2021-01-08	f	004	t	t	t	17:00	WORKING 1234	1234	Working	08:00	WD
+81	2021-01-11	f	004	t	t	t	17:00	WORKING 1234	1234	Working	08:00	WD
+82	2021-01-12	f	004	t	t	t	17:00	WORKING 1234	1234	Working	08:00	WD
+83	2021-01-13	f	004	t	t	t	17:00	WORKING 1234	1234	Working	08:00	WD
+84	2021-01-14	f	004	t	t	t	17:00	WORKING 1234	1234	Working	08:00	WD
+85	2021-01-15	f	004	t	t	t	17:00	WORKING 1234	1234	Working	08:00	WD
+86	2021-01-18	f	004	t	t	t	17:00	WORKING 1234	1234	Working	08:00	WD
+87	2021-01-19	f	004	t	t	t	18:00	WORKING 1234	1234	Working	08:00	WD
+88	2021-01-20	f	004	t	t	t	17:00	WORKING 1234	1234	Working	08:00	WD
+92	2020-12-23	f	108	t	t	t	17:00	working 1234	1234	Working	08:00	WD
+93	2020-12-24	f	108	t	t	t	17:00	working 1234	1234	Working	08:00	WD
+94	2020-12-25	f	108	t	t	t	19:00	working 1234	1234	Working	08:00	PH
+96	2020-12-29	f	108	t	t	t	22:30	working 1234	1234	Working	08:00	WD
+99	2021-01-04	f	108	t	t	t	19:00	working 1234	1234	Working	08:00	WD
+97	2020-12-30	f	108	t	t	t	20:00	working 1234	1234	Working	08:00	WD
+102	2021-01-07	f	108	t	t	t	17:00	working 1234	1234	Working	08:00	WD
+103	2021-01-08	f	108	f	f	f	12:00	SAL		SAL	00:00	WD
+106	2021-01-13	f	108	t	t	t	18:00	working 1234	1234	Working	08:00	WD
+105	2021-01-12	f	108	f	f	f	12:00	SAL		SAL	00:00	WD
+104	2021-01-11	f	108	f	f	f	12:00	SAL		SAL	00:00	WD
+100	2021-01-05	f	108	f	f	f	12:00	Sick Annual Leave		SAL	00:00	WD
+101	2021-01-06	f	108	f	f	f	12:00	Sick Annual Leave		SAL	00:00	WD
+107	2021-01-14	f	108	t	t	t	17:00	working 1234	1234	Working	08:00	WD
+108	2021-01-15	f	108	t	t	t	17:00	working 1234	1234	Working	08:00	WD
+109	2021-01-16	f	108	t	t	t	16:00	OVERTIME 1234	1234	Working	08:00	WE
+110	2021-01-18	f	108	t	t	t	18:00	WORKING 1234	1234	Working	08:00	WD
+112	2021-01-20	f	108	t	t	t	18:00	WORKING 1234	1234	Working	08:00	WD
+98	2020-12-31	f	108	t	f	t	17:00	working 1234	1234	Working	08:00	WD
+111	2021-01-19	f	108	t	f	t	17:00	WORKING 1234	1234	Working	08:00	WD
+\.
+
+
+--
+-- Data for Name: ic_employee; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.ic_employee (id, employee_bpjs_ks, employee_bpjs_tk, employee_dob, employee_address, employee_attendance, employee_away, employee_basic_salary, employee_division, employee_email, employee_fix, employee_hse, employee_id, employee_job_position, employee_join_date, employee_kk, employee_marital_status, employee_meal, employee_name, employee_nik, employee_npwp, employee_ontime, employee_overtime, employee_phone, employee_productivity, employee_status, employee_transport, employee_mother_name, employee_pob, working_site, employee_level, employee_blood) FROM stdin;
+3	767676767676767	545454545454	1993-12-02	Bilabong Permai	2	10	5	IT	diastowo@gmail.com	8	6	1	Developer	2020-12-02	787878787878778	K/0	4	Diastowo Faryduana	3201370212930001	2362736726372637	1	9	0812389834234	7	Full-Time	3	Faizatin	Bogor	Bogor	L9	\N
+1	838383838383	02020202020202	1993-12-02	Deket danau Cinta	4	10	1	IT	john@gmail.com	8	6	101	Developer	2019-12-02	6715243675412	K/0	2	John Cobalt	876238476234	6161616161661	5	9	081122334455	7	Full-Time	3	Sarah Conor	Bogor	Bogor	L9	\N
+4	0001817621537		1979-08-12	VISAR INDAH PRATAMA BLOK V.11 NO.04, CIBINONG, BOGOR\n	0	100000	5740621.475	PRODUCTION	syaripudin79@gmail.com	0	0	001	Workshop Supervisor	2004-10-04	3201010806170030	K/1	26700.565	SYARIPUDIN	3276041208790009	577869639412000	0	30867.71	081384993342	18204.9306818182	Full-Time	26700.565		SERANG	Bogor	L7	\N
+7	0001817627343		1985-10-07	JL. RAYA PASIR PUTIH, GG.BUNGUR NO.22	0	100000	5810535.6	Sales	ridwanhamdani88@gmail.com	0	0	022	Purchasing Staff	2009-04-02	3276032303150014	K/2	18818.21	RIDWAN HAMDANI	3201290710850003	791722093401000	0	30788	081314156608	13601.94	Full-Time	18818.21		BOGOR	Bogor	L4	AB
+8	0001545849911		1989-06-01		0	100000	4708734.13	production	samsulrizal5723@gmail.com	0	0	108	Technician	2019-09-09	0	K/0	9536.14022727273	SYAMSUL RIZAL	6471030106890001	792143349721000	0	27218.1163583815	082317400077	12926.7678636364	Full-Time	9536.14022727273		BALIKPAPAN	Bogor	L2	A
+5	0001817622663		1980-03-07	KP. CICALUNG, BOJOT,JAWILAN	0	100000	5108429.22	PRODUCTION	adesumardi97@gmail.com	0	0	004	Workshop Staff	2005-07-09	3604263103100015	K/0	18818.2118863636	ADE SUMARDI	3604260703800009	577869662419000	0	27989.0924855491	082312339899	13601.935609091	Full-Time	18818.2118863636		MAJA-LEBAK	Bogor	L4	A
+6	0001818163721		1975-06-15	KP LEUWI KOTOK, PASIRLAJA, SUKARAJA	0	0	4895218.65	PRODUCTION	isc.hasanudin@gmail.com	0	0	046	SECURITY	2011-12-25	3201041203080031	K/0	0	HASANUDIN	3201041506750026	449329671403000	0	26948.63	087873227882 	282057.84	Full-Time	0		BOGOR	Bogor	L9	\N
+2	74646464664646	8838838383838	1994-01-13	Sentul City	7	1.1	10.1	IT	ayuamizah13@gmail.com	3	5.1	102	IT Support	2015-09-12	7467564756346851	K/1	9	Ayu Amizah	83838383842982831	9909090909090909	6	2	081113332221	4	Full-Time	8	Cindy Deswita	Cengkareng	Bogor	L9	\N
+9					0	100000	4662113	Production		0	0	126	Technician			K/0	8476.56909090909	YULIANTO		756442505724000	0	26948.63		12714.8536363636	Full-Time	8476.56909090909			Balikpapan	L9	\N
+10					0	100000	4662113	OFFICE		0	0	038	OFFICCE BOY			K/0	9324.226	NURYADI			0	26948.63		12820.81075	Full-Time	9324.226			Bogor	L9	\N
+12	0	0	1982-31-12	PERUM JATIJAJAR BLOK A10 /3,CIMANGGIS	0	100000	50886105.566032	ENGINEERING	harlysetiawan@gmail.com	0	0	010	Engineering Supervisor	0	0	K/3	0	Harly Setiawan	3275053112820025	245667563432000	0	0	081382639801	0	FULL-TIME	0	0	BUKITTINGGI	BOGOR	DIR	0
+13	0	0	1980-24-05	LEUWI NUTUG	0	100000	4662113	PRODUCTION	dediharyono2405@gmail.com	0	0	102	Factory Hand	0	3201052503110303	K/2	8476.56909090909	Dedi Haryono	3201052405800011	907679591436000	0	26948.6300578035	082111780552	12714.8536363636	FULL-TIME	8476.56909090909	0	MAJALENGKA	BOGOR	L1.1	0
+14	0	0	undefined-0-undefined	0	0	100000	4662113	PRODUCTION	junartonarto92@gmail.com	0	0	113	Technician	0	0	K/1	8476.56909090909	Junarto	6471031706920003	549889285721000	0	26948.6300578035	085752222461	12714.8536363636	FULL-TIME	8476.56909090909	0	0	BPN	L1.1	0
+15	0	0	undefined-0-undefined	0	0	100000	4708734.13	OFFICE	andrewsulistiyo@gmail.com	0	0	122	Warehouse Staff	0	0	TK/0	9536.14022727273	Andrew Sulistyo Abidin	3201072701930001	476305784436000	0	27218.1163583815	087711181002	12926.7678636364	FULL-TIME	9536.14022727273	0	0	BOGOR	L2	0
+16	0	0	1989-10-07	LEUWI NUTUG	0	100000	4662113	PRODUCTION	muhammadmuhammadodih@gmail.com	0	0	101	Factory Hand	0	3201031303190003	K/0	8476.56909090909	Muhammad Odih	3201171007890003	908265846436000	0	26948.6300578035	085881199768	12714.8536363636	FULL-TIME	8476.56909090909	0	BOGOR	BOGOR	L1.1	0
+17	0	0	undefined-0-undefined	0	0	100000	4662113	PRODUCTION	yulianto.sulle29@gmail.com	0	0	126	Technician	0	0	TK/0	8476.56909090909	Yulianto	7326022906970001	756442505724000	0	26948.6300578035	085343760152	12714.8536363636	FULL-TIME	8476.56909090909	0	0	BPN	L1.1	0
+27	0	0	1992-27-01	0	0	100000	5174945.43	OFFICE	monicasintaa@gmail.com	0	0	118	Admin Staff	0	0	K/0	9536.14022727273	Shinta Monica	3201016701920004	759735806403000	0	29912.9793641618	08121113095	12926.7678636364	FULL-TIME	9536.14022727273	0	BOGOR	BOGOR	L2	0
+35	0	0	1986-31-12	CABAN JURANG	0	100000	5384740.515	PRODUCTION	muhllisin9@gmail.com	0	0	079	Fabrication	0	3201032003090017	K/1	14939.9530227273	Muhlisin	3308183112860054	805081908524000	0	29643.4930635838	08569955152	13075.1078227273	FULL-TIME	14939.9530227273	0	MAGELANG	BOGOR	L3	0
+46	0	0	1992-01-05	0	0	100000	4895218.65	PRODUCTION	arfinrahmat13@gmail.com	0	0	130	Marketing Staff	0	0	K/1	14939.9530227273	Arfin	3202110501920003	725874051405000	0	28296.0615606936	085310526267	13075.1078227273	FULL-TIME	14939.9530227273	0	SUKABUMI	BOGOR	L3	0
+54	0	0	1981-11-01	JL. BLOK M 1 NO.24	0	100000	4708734.13	OFFICE	mhirandha2@gmail.com	0	0	074	Workshop Staff BPN	0	6471052310090047	K/3	9536.14022727273	Syamsul Rizal	6471051101810002	806502068721000	0	27218.1163583815	085348291732	12926.7678636364	FULL-TIME	9536.14022727273	0	BALIKPAPAN	BPN	L2	0
+62	0	0	1995-03-11	KP. BUNTAR	0	100000	4708734.13	OFFICE	supriatnahendra00@gmail.com	0	0	088	Driver	0	3271010506170005	K/1	9536.14022727273	Hendra Supriatna	3271010311950002	763453719404000	0	27218.1163583815	089620480141	12926.7678636364	FULL-TIME	9536.14022727273	0	BOGOR	BOGOR	L2	0
+19	0	0	undefined-0-undefined	0	0	100000	4941839.78	OFFICE	muhlismuhammad87@gmail.com	0	0	121	Admin Staff	0	0	K/1	9536.14022727273	Muhammad Muhlis	3201122512920001	898584370403000	0	28565.5478612717	081210752587	12926.7678636364	FULL-TIME	9536.14022727273	0	0	BOGOR	L2	0
+26	0	0	1995-11-01	KP. KAUM	0	100000	4662113	OFFICE	dayathirahmat24@gmail.com	0	0	072	Junior Machining	0	3201121401200004	K/2	14939.9530227273	Rahmat Hidayat	3201121101950012	805536935403000	0	26948.6300578035	087874085279	13075.1078227273	FULL-TIME	14939.9530227273	0	BOGOR	BOGOR	L3	0
+37	0	0	1979-12-09	0	0	100000	3529713.4	PRODUCTION	0	0	0	134	Security	0	6471032205170003	K/2	5580.57454545455	Ilham	1304121209790001	0	0	20402.9676300578	0	8370.86181818182	FULL-TIME	5580.57454545455	0	BARULAK	BPN	L1.1	0
+43	0	0	1983-19-05	JL. HM ASYARI	0	100000	5592640.515	PRODUCTION	sandra.aunk178@yahoo.com	0	0	006	Workshop Staff	0	3201011308180041	K/2	18818.2118863636	Sandra	3278021805830009	577869696425000	0	30788.001734104	081389431013	13601.9356090909	FULL-TIME	18818.2118863636	0	TASIKMALAYA	BOGOR	L4	0
+56	0	0	1983-16-09	KP. CARANG PULANG	0	100000	5568429.95	OFFICE	agung_m_n12@yahoo.com	0	0	036	Finance Staff	0	3201302411110017	TK/0	18818.2118863636	Agung M. Nur	3201301609830001	368266474434000	0	29388.5471098266	085718923776	13601.9356090909	FULL-TIME	18818.2118863636	0	BOGOR	BOGOR	L4	0
+59	0	0	1989-24-04	JL. TARUNA SARI NO.17	0	100000	4941839.78	PRODUCTION	alberthinuslangkarano@gmail.com	0	0	109	Welder	0	6471041504160011	K/1	9536.14022727273	Alberthinus	7324112404890004	928647684729000	0	28565.5478612717	081355393212	12926.7678636364	FULL-TIME	9536.14022727273	0	WASUPONDA	BOGOR	L2	0
+70	0	0	1996-02-05	0	0	100000	4662113	OFFICE	putriyaninadia8@gmail.com	0	0	115	Receptionist Saff	0	0	TK/0	8476.56909090909	Nadia Putri Yani	1301074205960003	940943590403000	0	26948.6300578035	082284137850	12714.8536363636	FULL-TIME	8476.56909090909	0	KAMPUNG TANJUNG	BOGOR	L1.1	0
+20	0	0	undefined-0-undefined	0	0	100000	4662113	OFFICE	17anggawisnu@gmail.com	0	0	120	Technician	0	0	TK/0	8476.56909090909	Angga Wisnu	6471051701890003	692458664721000	0	26948.6300578035	085791368475	12714.8536363636	FULL-TIME	8476.56909090909	0	0	BPN	L1.1	0
+22	0	0	1987-23-08	KOMPLEK. PAMULANG INDAH MA BLOK A 6/32	0	100000	5128324.3	ENGINEERING	jefrydedy3@gmail.com	0	0	075	Enginering Staff	0	3674061803190019	TK/0	14939.9530227273	Jefry Dedy Naipospos	3671052803870004	760384578416000	0	29643.4930635838	081283539126	13075.1078227273	FULL-TIME	14939.9530227273	0	TOBASA	BOGOR	L3	0
+24	0	0	1983-31-01	KP. LEUWI JAMBE	0	100000	4895218.65	PRODUCTION	dedi11016@gmail.com	0	0	058	Workshop Staff	0	3201050405120012	K/2	14939.9530227273	Dedi Irawan	3201053101830001	548727726403000	0	28296.0615606936	083811261723	13075.1078227273	FULL-TIME	14939.9530227273	0	BOGOR	BOGOR	L3	0
+39	0	0	1995-15-06	0	0	100000	5174945.43	OFFICE	ririn.madani15@gmail.com	0	0	112	Admin Staff	0	0	TK/0	9536.14022727273	Nisrina Madani	3201015506950010	802697953403000	0	29912.9793641618	085811540078	12926.7678636364	FULL-TIME	9536.14022727273	0	JAKARTA	BOGOR	L2	0
+42	0	0	1972-02-04	JL. MULAWARMAN NO.16-A	0	100000	37717760	PRODUCTION	juhaniss72@gmail.com	0	0	090	Branch Manager	0	6471051109080041	K/2	0	Juhanis	6471050204720002	692458672721000	0	0	081545940700	0	FULL-TIME	0	0	SINJAI	BPN	L10	0
+57	0	0	1987-15-07	PURI NIRWANA I BLOK G NO.10	0	100000	5477982.775	PRODUCTION	fajaraw15@gmail.com	0	0	103	Process and Quality Engineering	0	3201013003160048	K/1	14939.9530227273	Fajar Adi	3201321507870001	349062729436000	0	28296.0615606936	085718227960	13075.1078227273	FULL-TIME	14939.9530227273	0	BOGOR	BOGOR	L3	0
+71	0	0	undefined-0-undefined	0	0	100000	7152160.5	ENGINEERING	metildasiburian@yahoo.com	0	0	124	Engineer	0	0	TK/0	524491.77	METILDA EVIATIY SIBURIAN	3271054708760014	092348275404000	0	71659.4115606936	081911053276	190724.28	FULL-TIME	524491.77	0	0	BOGOR	OLDCALC	0
+21	0	0	undefined-0-undefined	0	0	100000	3529713.4	PRODUCTION	0	0	0	133	Security	0	6471042005100031	K/0	5580.57454545455	Dedi Eko	6471042709810001	0	0	20402.9676300578	0	8370.86181818182	FULL-TIME	5580.57454545455	0	0	BPN	L1.1	0
+25	0	0	1982-29-09	KP HEGAR SARI	0	100000	4895218.65	PRODUCTION	madunchapers01@gmail.com	0	0	052	Workshop Staff	0	3271011701080032	K/2	14939.9530227273	Ahmad Suparman	3271012909820012	458919487404000	0	28296.0615606936	081515828883	13075.1078227273	FULL-TIME	14939.9530227273	0	BOGOR	BOGOR	L3	0
+38	0	0	1992-18-02	KP. LEUWI JAMBE	0	100000	5128324.3	PRODUCTION	ruslanmaulana45@gmail.com	0	0	057	Workshop Staff	0	3201050707072481	TK/0	14939.9530227273	Maulana Ruslan	3201051802920005	548728328403000	0	29643.4930635838	089639772170	13075.1078227273	FULL-TIME	14939.9530227273	0	BOGOR	BOGOR	L3	0
+40	0	0	1977-28-07	KP. BOJONG KOPI	0	100000	5568429.95	PRODUCTION	rifkywidianto224@gmail.com	0	0	026	Workshop Staff	0	3271011504140018	K/2	18818.2118863636	Heru Widianto	3271012807770002	791722135404000	0	32187.4563583815	081932503226	13601.9356090909	FULL-TIME	18818.2118863636	0	BOGOR	BOGOR	L4	0
+58	0	0	1984-02-12	LEBAK NANGKA	0	100000	4708734.13	PRODUCTION	drvisc655@gmail.com	0	0	047	Driver	0	3271012406130018	K/2	9536.14022727273	Iwan Gunawan	3271010212840013	452100712404000	0	27218.1163583815	081289977172	12926.7678636364	FULL-TIME	9536.14022727273	0	BOGOR	BOGOR	L2	0
+60	0	0	1996-26-02	0	0	100000	4440107	PRODUCTION	fitrywahyuni29@gmail.com	0	0	128	HSE Staff	0	0	TK/0	133203.21	Fitry	6402056602960001	859677742728000	0	1456509.08815029	082353839422	0	FULL-TIME	133203.21	0	0	BPN	OLDCALC	0
+69	0	0	1981-06-01	KP. BUNTAR	0	100000	4895218.65	PRODUCTION	tatangsetiawan0204@gmail.com	0	0	027	Workshop Staff	0	3271012602072997	K/2	14939.9530227273	Tatang Setiawan	3271010601810007	791722127404000	0	28296.0615606936	085891513171	13075.1078227273	FULL-TIME	14939.9530227273	0	BOGOR	BOGOR	L3	0
+23	0	0	undefined-0-undefined	0	0	100000	3529713.4	PRODUCTION	0	0	0	132	Security	0	6471040612160004	K/2	5580.57454545455	Adi Siswanto	7307061909900001	0	0	20402.9676300578	0	8370.86181818182	FULL-TIME	5580.57454545455	0	0	BPN	L1.1	0
+41	0	0	1996-23-10	DK. PUCUK	0	100000	6060746.9	OFFICE	ninsanto23@gmail.com	0	0	070	Junior Welder	0	0	TK/0	14939.9530227273	Nindiyar Santo	3320092310960007	805643681516000	0	35033.2190751445	082210139087	13075.1078227273	FULL-TIME	14939.9530227273	0	JEPARA	BOGOR	L3	0
+44	0	0	1969-10-01	KOMPLEK KODAM	0	100000	27572160	PRODUCTION	aditr99@gmail.com	0	0	100	Production Manager	0	3174053101110062	K/1	0	Adi Teguh	3174051001690015	170056758013000	0	0	081310695650	0	FULL-TIME	0	0	SOLO	BOGOR	L10	0
+55	0	0	1993-30-12	KP. CIBOLANG	0	100000	17904000	ACCOUNTING	indra.kartadipura@yahoo.com	0	0	111	Accounting	0	3201240506200004	TK/0	0	Dwi Indra Kusuma	3201243012930001	740342662434000	0	0	081212692998	0	FULL-TIME	0	0	JAKARTA	BOGOR	L10	0
+61	0	0	undefined-0-undefined	0	0	100000	6778958.2	OFFICE	eko.cahyono1975@hotmail.com	0	0	119	Logistic Staff	0	0	K/1	18818.2118863636	Eko Cahyono	3175052705750009	570443879009000	0	39184.7294797688	08561282575	13601.9356090909	FULL-TIME	18818.2118863636	0	0	BOGOR	L4	0
+68	0	0	1979-18-06	0	0	100000	4662113	PRODUCTION	imaljamaludin6@gmail.com	0	0	116	Factory Hand	0	0	K/2	8476.56909090909	Imal Jamaludin	3201031806790003	941874513436000	0	26948.6300578035	089638803089	12714.8536363636	FULL-TIME	8476.56909090909	0	PANDEGLANG	BOGOR	L1.1	0
+29	0	0	undefined-0-undefined	0	0	100000	4020803.96	PRODUCTION	0	0	0	131	Warehouse Staff	0	6471053005060011	K/1	6278.14636363636	Syaharuddin	6471050305800014	0	0	23241.6413872832	0	8510.37618181818	FULL-TIME	6278.14636363636	0	0	BPN	L2	0
+33	0	0	1968-04-01	KP. LEUWI JAMBE	0	100000	4662113	OFFICE	nuryadioke90@gmail.com	0	0	038	OB	0	3201050707072402	K/3	9324.226	Nuryadi	3201050401680001	445189822403000	0	26948.6300578035	087870662898	12820.81075	FULL-TIME	9324.226	0	BOGOR	BOGOR	L1.2	0
+48	0	0	1998-27-09	PERUM. GDA BLOK.B NO.44	0	100000	6293852.55	PRODUCTION	dody.270998@gmail.com	0	0	094	Junior Solderer	0	6471022611180001	K/1	14939.9530227273	Dody	6471032709980002	851895805721000	0	32338.3560693642	082351629372	13075.1078227273	FULL-TIME	14939.9530227273	0	BALIKPAPAN	BPN	L3	0
+51	0	0	1993-03-02	JL. MULAWARMAN NO.16	0	100000	4708734.13	PRODUCTION	Faikatunnisa5@gmail.com	0	0	089	Vectory Hand	0	6471050908190010	K/1	9536.14022727273	Suprianto	7371070302930002	661016667721000	0	27218.1163583815	085246899904	12926.7678636364	FULL-TIME	9536.14022727273	0	SINJAI	BPN	L2	0
+65	0	0	1985-01-11	JL. KARANG JATI DALAM NO.53	0	100000	4708734.13	PRODUCTION	scooteradam85@gmail.com	0	0	095	Painter	0	6471040403150013	K/2	9536.14022727273	Dachri Adam	6471040111850004	851828368721000	0	27218.1163583815	081254111461	12926.7678636364	FULL-TIME	9536.14022727273	0	BALIKPAPAN	BPN	L2	0
+30	0	0	undefined-0-undefined	0	0	100000	15243800	PRODUCTION	sujonouun.bohama@gmail.com	0	0	129	Sales Manager	0	0	K/2	0	Sujono Uun	6304052206690001	732349790421000	0	0	081251514455	0	FULL-TIME	0	0	0	BPN	L9	0
+50	0	0	1979-01-08	KP. KADUMANGU	0	100000	4662113	OFFICE	agusdarwanto773@gmail.com	0	0	024	OB	0	3201050707070888	TK/0	9324.226	Agus Darmanto	3201050108790005	791722119403000	0	26948.6300578035	087770382839	12820.81075	FULL-TIME	9324.226	0	BOGOR	BOGOR	L1.2	0
+66	0	0	1988-14-06	VILLA GADING HARAPAN BLOK AR.4 NO.18	0	100000	8923200	OFFICE	ade_ferdiansyah@y7mail.com	0	0	099	HR & GA	0	3216023107170035	K/3	0	Ade ferdiansyah	3275011406880013	790908917407000	0	0	081290493055	0	FULL-TIME	0	0	JAKARTA	BOGOR	L9	0
+31	0	0	1985-03-11	0	0	100000	18590000	OFFICE	novansurya85@gmail.com	0	0	123	BDM Coolant	0	3672060811110004	K/2	817960	Novan Surya Atmaja	3672060311850002	788884203417000	0	0	081807822975	0	FULL-TIME	817960	0	0	BOGOR	OLDCALC	0
+34	0	0	1989-08-03	KANDANG RODA	0	100000	5361429.95	OFFICE	nvialvhie@gmail.com	0	0	081	Admin Staff	0	3201042402090024	TK/0	14939.9530227273	Alvi Nora	3201044803890008	725656011403000	0	30990.924566474	087870953724	13075.1078227273	FULL-TIME	14939.9530227273	0	LUNG DANUN	BOGOR	L3	0
+47	0	0	undefined-0-undefined	0	0	100000	4941839.78	PRODUCTION	harypresetyo@gmail.com	0	0	110	Junio Solderer	0	0	K/1	9324.226	Harry Prasetyo	3313151002920004	734891609528000	0	28565.5478612717	089515084604	12820.81075	FULL-TIME	9324.226	0	0	BOGOR	L1.2	0
+52	0	0	1996-28-06	JL. MULAWARMAN NO.16	0	100000	4708734.13	PRODUCTION	Faikatunnisa5@gmail.com	0	0	093	Admin Staff	0	6471050908190010	k/1	9536.14022727273	Faika Tunnisa	7315116806960001	846783413724000	0	27218.1163583815	082141676495	12926.7678636364	FULL-TIME	9536.14022727273	0	PINRANG	BPN	L2	0
+64	0	0	1978-06-08	KP. BOJONG KOPI	0	100000	6118957.465	PRODUCTION	rudikebots@gmail.com	0	0	044	Workshop Staff	0	3201282703190003	K/1	18818.2118863636	Rudi Hartono	3173010608780027	446977928034000	0	31031.3869942197	085210511878	13601.9356090909	FULL-TIME	18818.2118863636	0	JAKARTA	BOGOR	L4	0
+32	0	0	undefined-0-undefined	0	0	100000	4440107	PRODUCTION	marlansuherlan99@gmail.com	0	0	127	AR Finance Staff	0	0	TK/0	133203.21	Marlan	3201243008950003	955489752434000	0	12832.6791907515	085778967633	133203.21	FULL-TIME	133203.21	0	0	BOGOR	OLDCALC	0
+49	0	0	1977-10-11	LEUWINUTUG	0	100000	4662113	OFFICE	isc.badrudin@gmail.com	0	0	066	Security	0	3201030603080049	K/3	9324.226	Badrudin	3201031011770003	588590679721000	0	26948.6300578035	081213305142	12820.81075	FULL-TIME	9324.226	0	BOGOR	BOGOR	L1.2	0
+67	0	0	1976-31-01	JL. BUNGURSARI RAYA NO.8	0	100000	10594986.45	SALES	w.ridiana@yahoo.de	0	0	060	Product Suport	0	3273140809106694	TK/0	27560.565	R. Wida Ridiana	3273147101760003	974080244423000	0	41420.5023121387	081398733343	40088.0945454545	FULL-TIME	27560.565	0	GARUT	BOGOR	L8	0
+18	0	0	1991-27-11	0	0	100000	4662113	OFFICE	rizkystone27@gmail.com	0	0	117	Factory Hand	0	0	TK/0	8476.56909090909	Rizki Abdullah	3201052711910002	940357239403000	0	26948.6300578035	089520538377	12714.8536363636	FULL-TIME	8476.56909090909	0	BOGOR	BOGOR	L1.1	0
+28	0	0	1994-09-03	KP. LEUWI JAMBE	0	100000	5128324.3	PRODUCTION	gilangudo@yahoo.com	0	0	051	Workshop Staff	0	3201050707072402	TK/0	14939.9530227273	Gilang Ramadhan	3201050903940004	458809050403000	0	29643.4930635838	085691797797	13075.1078227273	FULL-TIME	14939.9530227273	0	BOGOR	BOGOR	L3	0
+36	0	0	1983-07-08	JL. ATENG ILYAS KP. MUHARA	0	100000	5594535.6	PRODUCTION	acephasanudin083@gmail.com	0	0	080	Welder	0	3201032003090017	K/1	14939.9530227273	Acep Hasanudin	3201030708830007	972457337436000	0	32338.3560693642	085888309695	13075.1078227273	FULL-TIME	14939.9530227273	0	BOGOR	BOGOR	L3	0
+45	0	0	1996-23-09	MASALAP ILIR BLOK. I	0	100000	5862607.0975	PRODUCTION	Ronallaga96@gmail.com	0	0	091	Solderer	0	6408143101120004	TK/0	14939.9530227273	Ronal	6408142309960002	846899037724000	0	32338.3560693642	082251759118	13075.1078227273	FULL-TIME	14939.9530227273	0	SANGATTA	BPN	L3	0
+53	0	0	1981-13-05	KP. BITUNG	0	100000	5084218.65	PRODUCTION	suyatno.indocool@gmail.com	0	0	032	Workshop Staff	0	3603171110160021	K/1	18818.2118863636	Suyatno	3604251305810001	357269620451000	0	29388.5471098266	085215840421	13601.9356090909	FULL-TIME	18818.2118863636	0	NGAWI	BOGOR	L4	0
+63	0	0	1990-12-08	CIKARET	0	100000	5084218.65	SALES	fnurrozi@gmail.com	0	0	097	Sales Engineer	0	3201011411170018	K/2	18818.2118863636	Fahri Nur Rozi	3201011208900007	677698722403000	0	0	0812 9700 2764	13601.9356090909	FULL-TIME	18818.2118863636	0	BOGOR	BOGOR	L4	0
+\.
+
+
+--
+-- Data for Name: ic_summary_result; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.ic_summary_result (id, dts_summary_name, dts_summary_result) FROM stdin;
+1	Summary - 33s8h2hb9gj	[{"meal":20,"workingDay":20,"weekend_hours":0,"away":0,"productivity":20,"employee_id":"001","employee_name":"SYARIPUDIN","transport":20,"weekday_hours":200},{"meal":18,"workingDay":18,"weekend_hours":0,"away":0,"productivity":18,"employee_id":"004","employee_name":"ADE SUMARDI","transport":18,"weekday_hours":167.75},{"meal":20,"workingDay":21,"weekend_hours":0,"away":0,"productivity":20,"employee_id":"022","employee_name":"RIDWAN HAMDANI","transport":21,"weekday_hours":197.25},{"meal":18,"workingDay":16,"weekend_hours":17,"away":0,"productivity":18,"employee_id":"108","employee_name":"SYAMSUL RIZAL","transport":18,"weekday_hours":160.5}]
+2	Summary - roif5a6park	[{"meal":20,"workingDay":20,"weekend_hours":0,"away":0,"productivity":20,"employee_id":"001","employee_name":"SYARIPUDIN","transport":20,"weekday_hours":200,"unpaid":0},{"meal":18,"workingDay":18,"weekend_hours":0,"away":0,"productivity":18,"employee_id":"004","employee_name":"ADE SUMARDI","transport":18,"weekday_hours":167.75,"unpaid":1},{"meal":20,"workingDay":21,"weekend_hours":0,"away":0,"productivity":20,"employee_id":"022","employee_name":"RIDWAN HAMDANI","transport":21,"weekday_hours":197.25,"unpaid":0},{"meal":18,"workingDay":16,"weekend_hours":17,"away":0,"productivity":18,"employee_id":"108","employee_name":"SYAMSUL RIZAL","transport":18,"weekday_hours":160.5,"unpaid":0}]
+3	Summary - 04t5mdynfee7	[{"meal":20,"workingDay":20,"weekend_hours":0,"away":0,"productivity":20,"employee_id":"001","employee_name":"SYARIPUDIN","transport":20,"weekday_hours":200,"unpaid":0},{"meal":18,"workingDay":18,"weekend_hours":0,"away":0,"productivity":18,"employee_id":"004","employee_name":"ADE SUMARDI","transport":18,"weekday_hours":167.75,"unpaid":1},{"meal":20,"workingDay":21,"weekend_hours":0,"away":0,"productivity":20,"employee_id":"022","employee_name":"RIDWAN HAMDANI","transport":21,"weekday_hours":197.25,"unpaid":0},{"meal":2,"workingDay":16,"weekend_hours":17,"away":0,"productivity":18,"employee_id":"108","employee_name":"SYAMSUL RIZAL","transport":18,"weekday_hours":160.5,"unpaid":0}]
+4	Summary - kj2lksqb9v	[{"meal":20,"workingDay":20,"weekend_hours":0,"away":0,"productivity":20,"employee_id":"001","employee_name":"SYARIPUDIN","transport":20,"weekday_hours":200,"unpaid":0},{"meal":18,"workingDay":18,"weekend_hours":0,"away":0,"productivity":18,"employee_id":"004","employee_name":"ADE SUMARDI","transport":18,"weekday_hours":167.75,"unpaid":1},{"meal":20,"workingDay":21,"weekend_hours":0,"away":0,"productivity":20,"employee_id":"022","employee_name":"RIDWAN HAMDANI","transport":21,"weekday_hours":197.25,"unpaid":0},{"meal":2,"workingDay":16,"weekend_hours":17,"away":0,"productivity":18,"employee_id":"108","employee_name":"SYAMSUL RIZAL","transport":2,"weekday_hours":160.5,"unpaid":0}]
+5	Summary - m3esdn7qxjp	[{"meal":20,"workingDay":20,"weekend_hours":0,"away":0,"productivity":20,"employee_id":"001","employee_name":"SYARIPUDIN","transport":20,"weekday_hours":200,"unpaid":0},{"meal":18,"workingDay":18,"weekend_hours":0,"away":0,"productivity":18,"employee_id":"004","employee_name":"ADE SUMARDI","transport":18,"weekday_hours":167.75,"unpaid":1},{"meal":20,"workingDay":21,"weekend_hours":0,"away":0,"productivity":20,"employee_id":"022","employee_name":"RIDWAN HAMDANI","transport":21,"weekday_hours":197.25,"unpaid":0},{"meal":2,"workingDay":16,"weekend_hours":17,"away":0,"productivity":16,"employee_id":"108","employee_name":"SYAMSUL RIZAL","transport":2,"weekday_hours":160.5,"unpaid":0}]
+6	Summary - zxk87w6vafh	[{"meal":20,"workingDay":20,"weekend_hours":0,"away":0,"productivity":20,"employee_id":"001","employee_name":"SYARIPUDIN","transport":20,"weekday_hours":200,"unpaid":0},{"meal":0,"workingDay":18,"weekend_hours":0,"away":0,"productivity":0,"employee_id":"004","employee_name":"ADE SUMARDI","transport":0,"weekday_hours":167.75,"unpaid":1},{"meal":20,"workingDay":21,"weekend_hours":0,"away":0,"productivity":20,"employee_id":"022","employee_name":"RIDWAN HAMDANI","transport":21,"weekday_hours":197.25,"unpaid":0},{"meal":2,"workingDay":16,"weekend_hours":17,"away":0,"productivity":16,"employee_id":"108","employee_name":"SYAMSUL RIZAL","transport":2,"weekday_hours":160.5,"unpaid":0}]
+7	Summary - dm1yo5ml02e	[{"meal":20,"workingDay":20,"weekend_hours":0,"away":0,"productivity":20,"employee_id":"001","employee_name":"SYARIPUDIN","transport":20,"weekday_hours":200,"unpaid":0},{"meal":18,"workingDay":18,"weekend_hours":0,"away":0,"productivity":18,"employee_id":"004","employee_name":"ADE SUMARDI","transport":18,"weekday_hours":167.75,"unpaid":1},{"meal":20,"workingDay":21,"weekend_hours":0,"away":0,"productivity":20,"employee_id":"022","employee_name":"RIDWAN HAMDANI","transport":21,"weekday_hours":197.25,"unpaid":0},{"meal":2,"workingDay":16,"weekend_hours":17,"away":0,"productivity":16,"employee_id":"108","employee_name":"SYAMSUL RIZAL","transport":2,"weekday_hours":160.5,"unpaid":0}]
+\.
+
+
+--
+-- Name: ic_dts_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.ic_dts_id_seq', 112, true);
+
+
+--
+-- Name: ic_employee_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.ic_employee_id_seq', 71, true);
+
+
+--
+-- Name: ic_summary_result_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.ic_summary_result_id_seq', 7, true);
+
+
+--
+-- Name: ic_dts ic_dts_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.ic_dts
+    ADD CONSTRAINT ic_dts_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: ic_employee ic_employee_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.ic_employee
+    ADD CONSTRAINT ic_employee_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: ic_summary_result ic_summary_result_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.ic_summary_result
+    ADD CONSTRAINT ic_summary_result_pkey PRIMARY KEY (id);
+
+
+--
+-- PostgreSQL database dump complete
+--
+
