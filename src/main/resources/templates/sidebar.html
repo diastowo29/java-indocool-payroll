@@ -1,4 +1,4 @@
-<div th:fragment="the_sidebar">
+<!-- <div th:fragment="the_sidebar">
 	<ul class="menu">
 	    <li class="sidebar-title">Menu</li>
 	    <li class="sidebar-item">
@@ -46,6 +46,61 @@
 	    </li>
 	    <li id="calc-li" class="sidebar-item ">
 	        <a href="/calculation" class='sidebar-link'>
+	            <i class="bi bi-calculator"></i>
+	            <span>Salary Calculation</span>
+	        </a>
+	    </li>
+	</ul>
+</div> -->
+
+<div th:fragment="the_sidebar">
+	<ul class="menu">
+	    <li class="sidebar-title">Menu</li>
+	    <li class="sidebar-item">
+	        <a href="#" class='sidebar-link'>
+	            <i class="bi bi-grid-fill"></i>
+	            <span>Dashboard</span>
+	        </a>
+	    </li>
+	    <li id="employee-li" class="sidebar-item has-sub">
+	        <a href="#" class='sidebar-link'>
+	            <i class="bi bi-people-fill"></i>
+	            <span>Employees</span>
+	        </a>
+	        <ul class="submenu">
+	            <li id="add-employee-li" class="submenu-item">
+	                <a href="#">Add New</a>
+	            </li>
+	            <li id="list-employee-li" class="submenu-item ">
+	                <a href="#">List Employees</a>
+	            </li>
+	        </ul>
+	    </li>
+	    <li id="fingerprint-li" class="sidebar-item">
+	        <a href="#" class='sidebar-link'>
+	            <i class="bi bi-hand-index-thumb"></i>
+	            <span>Fingerprint</span>
+	        </a>
+	    </li>
+	    <li id="dts-li" class="sidebar-item has-sub">
+	        <a href="#" class='sidebar-link'>
+	            <i class="bi bi-file-earmark-spreadsheet"></i>
+	            <span>Daily Time Sheet</span>
+	        </a>
+	        <ul class="submenu">
+	            <li id="add-dts-li" class="submenu-item ">
+	                <a href="/dts-new">Add New DTS</a>
+	            </li>
+	            <li id="dts-list-li" class="submenu-item ">
+	                <a href="/dts-list">DTS List</a>
+	            </li>
+	            <li id="dts-summary-li" class="submenu-item ">
+	                <a href="/dts-summary">DTS Summary</a>
+	            </li>
+	        </ul>
+	    </li>
+	    <li id="calc-li" class="sidebar-item ">
+	        <a href="#" class='sidebar-link'>
 	            <i class="bi bi-calculator"></i>
 	            <span>Salary Calculation</span>
 	        </a>
