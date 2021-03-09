@@ -12,4 +12,9 @@ public class DashboardController {
 	String loadAdminPage() {
 		return "dashboard";
 	}
+	
+	@RequestMapping("/")
+	String redirectToHome () {
+		return "redirect:/admin";
+	}
 }
