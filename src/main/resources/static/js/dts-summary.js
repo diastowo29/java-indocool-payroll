@@ -1,5 +1,10 @@
 var apiPrefix = '/api/v1';
 
+var formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'IDR',
+});
+
 function doSummarize () {
     var month = $('#month-summary-input').val();
     var year = $('#year-summary-input').val();
@@ -103,14 +108,14 @@ function generateCalculationRow (calc) {
     cell_emp_name.innerHTML = calc.employee_name;
     cell_emp_level.innerHTML = calc.employee_level;
     cell_days_worked.innerHTML = calc.workingDay;
-    cell_meal.innerHTML = calc.meals;
-    cell_transport.innerHTML = calc.transport;
-    cell_productivity.innerHTML = calc.productivity;
-    cell_away.innerHTML = calc.away;
-    call_overtime.innerHTML = calc.overtime;
-    cell_minus.innerHTML = 0;
-    cell_unpaid.innerHTML = calc.unpaid;
-    cell_total.innerHTML = calc.total_amount;
+    cell_meal.innerHTML = formatter.format(calc.meals);
+    cell_transport.innerHTML = formatter.format(calc.transport);
+    cell_productivity.innerHTML = formatter.format(calc.productivity);
+    cell_away.innerHTML = formatter.format(calc.away);
+    call_overtime.innerHTML = formatter.format(calc.overtime);
+    cell_minus.innerHTML = formatter.format(0);
+    cell_unpaid.innerHTML = formatter.format(calc.unpaid);
+    cell_total.innerHTML = formatter.format(calc.total_amount);
 }
 
 function generateDtsSummaryRow (dts) {
@@ -143,6 +148,4 @@ function generateDtsSummaryRow (dts) {
         minusCalculate = 0;
     }
     cell_minus.innerHTML = minusCalculate;
-    
-
 }
