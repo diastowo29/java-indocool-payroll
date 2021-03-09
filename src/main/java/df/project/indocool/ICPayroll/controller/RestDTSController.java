@@ -238,9 +238,9 @@ public class RestDTSController {
 	}
 
 	@DeleteMapping("/dts/{id}")
-	public ResponseEntity<String> deleteDts(@PathVariable(value = "id") Long id) {
+	public ResponseEntity<Object> deleteDts(@PathVariable(value = "id") Long id) {
 		dtsRepo.deleteById(id);
-		return new ResponseEntity<String>(HttpStatus.OK);
+		return new ResponseEntity<Object>(new HashMap<>(), HttpStatus.OK);
 	}
 
 	@PostMapping("/dts/add")

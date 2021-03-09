@@ -176,7 +176,7 @@ function saveDts () {
 		method: 'post',
         data: JSON.stringify(newDts),
 		success: function(result) {
-			console.log(result)
+			location.reload();
 		}
 	})
 }
@@ -190,7 +190,7 @@ function idChange () {
 		method: 'get',
 		success: function(result) {
 			// location.reload();
-			console.log(result)
+			// console.log(result)
             $('#emp-name-input').val(result.employeeName);
 		}
 	})
