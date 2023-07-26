@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="UTF-8">
@@ -75,12 +75,7 @@
                                         <div class="position-relative">
                                             <fieldset class="form-group">
                                                 <select class="form-select" id="summary-data-input">
-                                                    <option value="Summary - dm1yo5ml02e">Summary - dm1yo5ml02e</option>
-                                                    <option value="Summary - zxk87w6vafh">Summary - zxk87w6vafh</option>
-                                                    <option value="Summary - m3esdn7qxjp">Summary - m3esdn7qxjp</option>
-                                                    <option value="Summary - kj2lksqb9v">Summary - kj2lksqb9v</option>
-                                                    <option value="Summary - roif5a6park">Summary - roif5a6park</option>
-                                                    <option value="Summary - 33s8h2hb9gj">Summary - 33s8h2hb9gj</option>
+                                                    <option th:each="sum: ${sums}" th:text="${sum.summaryName}" th:value="${sum.summaryName}">Summary - dm1yo5ml02e</option>
                                                 </select>
                                             </fieldset>
                                         </div>
